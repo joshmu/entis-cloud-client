@@ -5,7 +5,7 @@ import LiquidGauge from './LiquidGauge'
 const { Title } = Typography
 
 const Stats = () => {
-  const data = new Array(6).fill({}).map((card, index) => {
+  const data = new Array(8).fill({}).map((card, index) => {
     return {
       title: 'Tank ' + index,
       value: Math.random() * 100,
