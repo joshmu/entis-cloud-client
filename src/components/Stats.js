@@ -1,16 +1,16 @@
-import React from 'react'
-import { Row, Col, Typography, Card } from 'antd'
-import LiquidGauge from './LiquidGauge'
+import React from "react";
+import { Row, Col, Typography, Card } from "antd";
+import LiquidGauge from "./LiquidGauge";
 
-const { Title } = Typography
+const { Title } = Typography;
 
 const Stats = () => {
   const data = new Array(8).fill({}).map((card, index) => {
     return {
-      title: 'Tank ' + index,
+      title: "Tank " + (index + 1),
       value: Math.random() * 100,
-    }
-  })
+    };
+  });
 
   return (
     <Row gutter={[16, 16]}>
@@ -29,7 +29,7 @@ const Stats = () => {
         </Col>
       ))}
     </Row>
-  )
-}
+  );
+};
 
-export default Stats
+export default Stats;
