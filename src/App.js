@@ -1,11 +1,24 @@
-import React from 'react'
-import { Button } from 'antd'
+import React, { useState } from 'react'
 import './App.less'
+import { Layout } from 'antd'
+import MainLayout from './components/MainLayout.js'
+import SidebarLayout from './components/SidebarLayout.js'
 
 function App() {
+  const [state, setState] = useState({ collapsed: false })
+
+  /** @param {boolean} collapsed */
+  const onCollapse = collapsed => {
+    console.log(collapsed)
+    setState({ collapsed })
+  }
+
   return (
     <div className='App'>
-      <Button type='primary'>Button</Button>
+      <Layout style={{ minHeight: '100vh' }}>
+        <SidebarLayout collapsed={state.collapsed} onCollapse={onCollapse} />
+        <MainLayout />
+      </Layout>
     </div>
   )
 }
