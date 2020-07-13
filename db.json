@@ -1,0 +1,124 @@
+{
+  "tanks": [
+    {
+      "name": "Tank 1",
+      "value": 17.19455562264225,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 2",
+      "value": 26.296938289390415,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 3",
+      "value": 73.82193597417164,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 4",
+      "value": 55.31807477659114,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 5",
+      "value": 23.020375311906882,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 6",
+      "value": 9.380050722568068,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 7",
+      "value": 1.9880671045217735,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 8",
+      "value": 82.27454198255799,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 9",
+      "value": 94.08201162303442,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 10",
+      "value": 79.33471097462437,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 11",
+      "value": 84.25272612050603,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 12",
+      "value": 21.32698493947074,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 13",
+      "value": 28.764279586450158,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 14",
+      "value": 6.389122427433103,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 15",
+      "value": 75.20744323228871,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 16",
+      "value": 47.9688604392158,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 17",
+      "value": 4.206200715249664,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 18",
+      "value": 26.587870162771555,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 19",
+      "value": 2.707162882551639,
+      "scale": 10000,
+      "units": "L"
+    },
+    {
+      "name": "Tank 20",
+      "value": 62.97515499351096,
+      "scale": 10000,
+      "units": "L"
+    }
+  ]
+}
