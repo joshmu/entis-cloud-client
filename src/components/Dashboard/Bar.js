@@ -14,6 +14,11 @@ const data = new Array(20).fill({}).map((t, i) => {
   return { name: `Tank ${i + 1}`, value: Math.random() * 100 }
 })
 
+const formatTooltipValue = (value, name, props) => [
+  value.toFixed(2) + '%',
+  name,
+]
+
 export default function Chart() {
   const theme = useTheme()
 
@@ -35,7 +40,7 @@ export default function Chart() {
         >
           <XAxis dataKey='name' padding={{ left: 10, right: 10 }} />
           <YAxis />
-          <Tooltip />
+          <Tooltip formatter={formatTooltipValue} label='test' />
           <Bar
             dataKey='value'
             fill={theme.palette.primary.main}

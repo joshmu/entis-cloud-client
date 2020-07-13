@@ -20,6 +20,8 @@ import {
   Notifications as NotificationsIcon,
 } from '@material-ui/icons'
 
+import { useGlobalContext } from '../contexts/globalContext'
+
 import SideMenu from './SideMenu/SideMenu'
 import Dashboard from './Dashboard/Dashboard'
 import About from './About/About'
@@ -116,8 +118,7 @@ const useStyles = makeStyles(theme => ({
 export default function Layout() {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
-
-  const appBarTitle = 'Summary'
+  const { pageTitle } = useGlobalContext()
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -152,7 +153,7 @@ export default function Layout() {
             noWrap
             className={classes.title}
           >
-            {appBarTitle}
+            {pageTitle}
           </Typography>
           <IconButton color='inherit'>
             <Badge badgeContent={4} color='secondary'>

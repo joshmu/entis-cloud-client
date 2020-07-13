@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   makeStyles,
   Container,
@@ -6,6 +6,8 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core'
+
+import { useGlobalContext } from '../../contexts/globalContext'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -25,6 +27,11 @@ const message = `Growing from an electrical and automation business, we have now
 
 const About = () => {
   const classes = useStyles()
+
+  const { setPageTitle } = useGlobalContext()
+  useEffect(() => {
+    setPageTitle('About Us')
+  }, [setPageTitle])
 
   return (
     <Container maxWidth='lg' className={classes.container}>
