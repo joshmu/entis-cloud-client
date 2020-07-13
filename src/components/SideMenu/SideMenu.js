@@ -52,11 +52,11 @@ const SideMenu = () => {
           </ListItemIcon>
           <ListItemText primary='Integrations' />
         </ListItem>
-        <ListItem button component={Link} to='/about'>
+        <ListItem button component={Link} to='/contact'>
           <ListItemIcon>
             <InfoIcon />
           </ListItemIcon>
-          <ListItemText primary='About' />
+          <ListItemText primary='Contact' />
         </ListItem>
       </List>
       <Divider />

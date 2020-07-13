@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   makeStyles,
   Container,
@@ -6,6 +6,8 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core'
+
+import { useGlobalContext } from '../../contexts/globalContext'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -23,8 +25,13 @@ const useStyles = makeStyles(theme => ({
 const title = 'Page Not Found'
 const message = `The page you are looking for does not exist, please check the url.`
 
-const About = () => {
+const NotFound = () => {
   const classes = useStyles()
+
+  const { setPageTitle } = useGlobalContext()
+  useEffect(() => {
+    setPageTitle(title)
+  }, [setPageTitle])
 
   return (
     <Container maxWidth='lg' className={classes.container}>
@@ -46,4 +53,4 @@ const About = () => {
   )
 }
 
-export default About
+export default NotFound

@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const title = 'About Us'
+const title = 'Contact Us'
 const message = `Growing from an electrical and automation business, we have now assembled an energetic multi-disciplinary team able to bring a holistic approach to plant improvement, optimisation and construction.`
 
 const About = () => {
@@ -30,7 +30,7 @@ const About = () => {
 
   const { setPageTitle } = useGlobalContext()
   useEffect(() => {
-    setPageTitle('About Us')
+    setPageTitle(title)
   }, [setPageTitle])
 
   return (

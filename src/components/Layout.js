@@ -24,7 +24,7 @@ import { useGlobalContext } from '../contexts/globalContext'
 
 import SideMenu from './SideMenu/SideMenu'
 import Dashboard from './Dashboard/Dashboard'
-import About from './About/About'
+import Contact from './Contact/Contact'
 import NotFound from './NotFound/NotFound'
 
 function Copyright() {
@@ -200,7 +200,7 @@ export default function Layout() {
         <Switch>
           <Route path='/' component={Dashboard} exact />
           <Route path='/dashboard' component={Dashboard} />
-          <Route path='/about' component={About} />
+          <Route path='/contact' component={Contact} />
           <Route component={NotFound} />
         </Switch>
 
