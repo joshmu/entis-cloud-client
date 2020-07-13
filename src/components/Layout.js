@@ -44,6 +44,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
   },
+  logo: {
+    maxWidth: 160,
+  },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
@@ -113,6 +116,9 @@ const useStyles = makeStyles(theme => ({
 export default function Layout() {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
+
+  const appBarTitle = 'Summary'
+
   const handleDrawerOpen = () => {
     setOpen(true)
   }
@@ -146,7 +152,7 @@ export default function Layout() {
             noWrap
             className={classes.title}
           >
-            Entis Cloud
+            {appBarTitle}
           </Typography>
           <IconButton color='inherit'>
             <Badge badgeContent={4} color='secondary'>
@@ -163,6 +169,20 @@ export default function Layout() {
         open={open}
       >
         <div className={classes.toolbarIcon}>
+          {/* <img
+            src='https://unsplash.it/160/40'
+            alt='logo'
+            className={classes.logo}
+          /> */}
+          <Typography
+            component='h1'
+            variant='h6'
+            color='inherit'
+            noWrap
+            // className={classes.title}
+          >
+            Entis Cloud
+          </Typography>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>

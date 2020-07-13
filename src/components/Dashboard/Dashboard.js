@@ -2,6 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import { makeStyles, Container, Grid, Paper } from '@material-ui/core'
 import Chart from './Chart'
+import Bar from './Bar'
 import Deposits from './Deposits'
 import Orders from './Orders'
 import Tanks from '../Tanks/Tanks'
@@ -32,17 +33,27 @@ export default function Dashboard() {
         {/* Chart */}
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper}>
-            <Chart />
+            <Bar />
           </Paper>
         </Grid>
+
         {/* Recent Deposits */}
         <Grid item xs={12} md={4} lg={3}>
           <Paper className={fixedHeightPaper}>
             <Deposits />
           </Paper>
         </Grid>
+
         {/* Tanks */}
         <Tanks />
+
+        {/* Chart */}
+        <Grid item xs={12}>
+          <Paper className={fixedHeightPaper}>
+            <Chart />
+          </Paper>
+        </Grid>
+
         {/* Recent Orders */}
         <Grid item xs={12}>
           <Paper className={classes.paper}>
