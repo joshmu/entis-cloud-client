@@ -11,8 +11,8 @@ import LiquidFillGauge from 'react-liquid-gauge'
 
 const LiquidGauge = ({
   value = 50,
-  startColor = 'cornflowerblue',
-  endColor = 'crimson',
+  startColor = 'crimson',
+  endColor = 'cornflowerblue',
   radius = 200,
 }) => {
   const [state, setState] = useState({ value })
