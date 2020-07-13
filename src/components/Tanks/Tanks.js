@@ -31,6 +31,8 @@ export default function Tanks() {
               radius={100}
               endColor={theme.palette.primary.main}
               startColor={theme.palette.secondary.main}
+              textStyleColor={theme.palette.text.primary}
+              waveTextStyleColor={'#fff'}
             />
           </Paper>
         </Grid>

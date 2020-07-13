@@ -14,6 +14,9 @@ const LiquidGauge = ({
   startColor = 'crimson',
   endColor = 'cornflowerblue',
   radius = 200,
+  textStyleColor = color('#444').toString(),
+  waveTextStyleColor = color('#FFF').toString(),
+  fontFamily = 'Roboto',
 }) => {
   const [state, setState] = useState({ value })
 
@@ -84,12 +87,12 @@ const LiquidGauge = ({
           fill: fillColor,
         }}
         textStyle={{
-          fill: color('#444').toString(),
-          fontFamily: 'Roboto',
+          fill: textStyleColor,
+          fontFamily: fontFamily,
         }}
         waveTextStyle={{
-          fill: color('#fff').toString(),
-          fontFamily: 'Roboto',
+          fill: waveTextStyleColor,
+          fontFamily: fontFamily,
         }}
         onClick={() => {
           setState({ value: Math.random() * 100 })
