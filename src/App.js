@@ -1,16 +1,15 @@
 import React from 'react'
 import './App.css'
 import 'typeface-roboto'
-import { CssBaseline, Button } from '@material-ui/core'
+import { CssBaseline } from '@material-ui/core'
+import Dashboard from './components/Dashboard/Dashboard'
 
 function App() {
   return (
     <>
       <CssBaseline />
       <div className='App'>
-        <Button variant='contained' color='primary'>
-          Hello World
-        </Button>
+        <Dashboard />
       </div>
     </>
   )
