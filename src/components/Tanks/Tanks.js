@@ -23,7 +23,7 @@ export default function Tanks() {
   return (
     <>
       {tanks.map((tank, index) => (
-        <Grid item xs={12} sm={6}  md={4} lg={3} key={index}>
+        <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
           <Paper className={classes.paper}>
             <Title>{tank.title}</Title>
             <LiquidGauge

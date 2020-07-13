@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
   },
   fixedHeight: {
+    // match height of tank cards
     height: 270,
   },
 }))
