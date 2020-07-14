@@ -24,7 +24,7 @@ export default function Chart() {
 
   return (
     <>
-      <Title>Level Overview</Title>
+      <Title>Levels</Title>
       <ResponsiveContainer>
         <BarChart
           width={500}

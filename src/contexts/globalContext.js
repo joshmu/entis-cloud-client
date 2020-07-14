@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 
+import mockDb from '../mockDb.json'
+
 const initialContext = {}
 
 export const globalContext = createContext(initialContext)
@@ -10,9 +12,15 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     if (db.length === 0) {
-      fetch('https://my-json-server.typicode.com/joshmu/entis-cloud-client')
+      fetch('http://localhost:3333/db')
         .then(response => response.json())
-        .then(data => setDb(data))
+        .then(data => setDb(data.db))
+        .catch(err => {
+          // rather than showing error lets now switch to local mock db
+          console.log('using local mock db')
+          // @ts-ignore
+          setDb(mockDb.db)
+        })
     }
   }, [db])
 

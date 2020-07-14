@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react'
-import clsx from 'clsx'
 import { makeStyles, Container, Grid, Paper } from '@material-ui/core'
-import History from '../Stats/History'
-import Bar from '../Stats/Bar'
-import Summary from '../Stats/Summary'
-import Tanks from '../Stats/Tanks/Tanks'
+import Details from '../Stats/Details'
 
 import { useGlobalContext } from '../../contexts/globalContext'
 
@@ -27,36 +23,18 @@ const useStyles = makeStyles(theme => ({
 
 export default function Dashboard() {
   const classes = useStyles()
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)
   const { setPageTitle } = useGlobalContext()
   useEffect(() => {
-    setPageTitle('Dashboard Overview')
+    setPageTitle('Details')
   }, [setPageTitle])
 
   return (
     <Container maxWidth='lg' className={classes.container}>
       <Grid container spacing={3}>
-        {/* Chart */}
-        <Grid item xs={12} md={8} lg={9}>
-          <Paper className={fixedHeightPaper}>
-            <Bar />
-          </Paper>
-        </Grid>
-
-        {/* Recent Deposits */}
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Paper className={fixedHeightPaper}>
-            <Summary />
-          </Paper>
-        </Grid>
-
-        {/* Tanks */}
-        <Tanks />
-
-        {/* Chart */}
+        {/* Details */}
         <Grid item xs={12}>
-          <Paper className={fixedHeightPaper}>
-            <History />
+          <Paper className={classes.paper}>
+            <Details />
           </Paper>
         </Grid>
       </Grid>

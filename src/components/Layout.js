@@ -24,6 +24,7 @@ import { useGlobalContext } from '../contexts/globalContext'
 
 import SideMenu from './SideMenu/SideMenu'
 import Dashboard from './Dashboard/Dashboard'
+import DetailsDash from './DetailsDash/DetailsDash'
 import Contact from './Contact/Contact'
 import NotFound from './NotFound/NotFound'
 
@@ -200,6 +201,7 @@ export default function Layout() {
         <Switch>
           <Route path='/' component={Dashboard} exact />
           <Route path='/dashboard' component={Dashboard} />
+          <Route path='/details' component={DetailsDash} />
           <Route path='/contact' component={Contact} />
           <Route component={NotFound} />
         </Switch>

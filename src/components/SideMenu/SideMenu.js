@@ -28,6 +28,12 @@ const SideMenu = () => {
           </ListItemIcon>
           <ListItemText primary='Dashboard' />
         </ListItem>
+        <ListItem button component={Link} to='/details'>
+          <ListItemIcon>
+            <BarChartIcon />
+          </ListItemIcon>
+          <ListItemText primary='Details' />
+        </ListItem>
         <ListItem button>
           <ListItemIcon>
             <ShoppingCartIcon />
@@ -39,12 +45,6 @@ const SideMenu = () => {
             <PeopleIcon />
           </ListItemIcon>
           <ListItemText primary='Customers' />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <BarChartIcon />
-          </ListItemIcon>
-          <ListItemText primary='Reports' />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
