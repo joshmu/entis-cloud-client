@@ -21,7 +21,7 @@ export default function Tanks() {
 
   return (
     <>
-      {db.tanks ? (
+      {db?.tanks ? (
         db.tanks.slice(0, 4).map((tank, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <Paper className={classes.paper}>
@@ -38,7 +38,7 @@ export default function Tanks() {
           </Grid>
         ))
       ) : (
-        <p>Not found.</p>
+        <p>Loading...</p>
       )}
     </>
   )

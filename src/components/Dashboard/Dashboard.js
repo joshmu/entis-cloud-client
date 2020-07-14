@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { makeStyles, Container, Grid, Paper } from '@material-ui/core'
 import History from '../Stats/History'
-import Bar from '../Stats/Bar'
+import Levels from '../Stats/Levels'
 import Summary from '../Stats/Summary'
 import Tanks from '../Stats/Tanks/Tanks'
 
@@ -39,7 +39,7 @@ export default function Dashboard() {
         {/* Chart */}
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper}>
-            <Bar />
+            <Levels />
           </Paper>
         </Grid>
 
