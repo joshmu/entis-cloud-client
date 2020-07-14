@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useRouteMatch } from 'react-router-dom'
 import {
   List,
   ListItem,
@@ -10,58 +10,70 @@ import {
 } from '@material-ui/core'
 import {
   Dashboard as DashboardIcon,
-  ShoppingCart as ShoppingCartIcon,
   People as PeopleIcon,
   BarChart as BarChartIcon,
   Layers as LayersIcon,
   Info as InfoIcon,
   Assignment as AssignmentIcon,
+  Person as PersonIcon,
 } from '@material-ui/icons'
 
 const SideMenu = () => {
+  const { url } = useRouteMatch()
+
+  const logout = e => {
+    window.alert('You have been logged out.')
+  }
+
   return (
     <>
       <List>
-        <ListItem button component={Link} to='/dashboard'>
+        <ListItem button component={Link} to={`${url}/dashboard`}>
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
           <ListItemText primary='Dashboard' />
         </ListItem>
-        <ListItem button component={Link} to='/details'>
+
+        <ListItem button component={Link} to={`${url}/details`}>
           <ListItemIcon>
             <BarChartIcon />
           </ListItemIcon>
           <ListItemText primary='Details' />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary='Orders' />
-        </ListItem>
+
         <ListItem button>
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>
           <ListItemText primary='Customers' />
         </ListItem>
+
         <ListItem button>
           <ListItemIcon>
             <LayersIcon />
           </ListItemIcon>
           <ListItemText primary='Integrations' />
         </ListItem>
-        <ListItem button component={Link} to='/contact'>
+
+        <ListItem button component={Link} to={`${url}/contact`}>
           <ListItemIcon>
             <InfoIcon />
           </ListItemIcon>
           <ListItemText primary='Contact' />
         </ListItem>
+
+        <ListItem button component={Link} to='/login' onClick={logout}>
+          <ListItemIcon>
+            <PersonIcon />
+          </ListItemIcon>
+          <ListItemText primary='Logout' />
+        </ListItem>
       </List>
+
       <Divider />
       <List>
-        <ListSubheader inset>Saved reports</ListSubheader>
+        <ListSubheader inset>Reports</ListSubheader>
         <ListItem button>
           <ListItemIcon>
             <AssignmentIcon />
@@ -78,7 +90,7 @@ const SideMenu = () => {
           <ListItemIcon>
             <AssignmentIcon />
           </ListItemIcon>
-          <ListItemText primary='Year-end sale' />
+          <ListItemText primary='Year-end' />
         </ListItem>
       </List>
     </>

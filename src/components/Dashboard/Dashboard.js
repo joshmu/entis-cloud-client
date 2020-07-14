@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { makeStyles, Container, Grid, Paper } from '@material-ui/core'
-import History from '../Stats/History'
+import Today from '../Stats/Today'
 import Levels from '../Stats/Levels'
 import Summary from '../Stats/Summary'
 import Tanks from '../Stats/Tanks/Tanks'
@@ -56,7 +56,7 @@ export default function Dashboard() {
         {/* Chart */}
         <Grid item xs={12}>
           <Paper className={fixedHeightPaper}>
-            <History />
+            <Today />
           </Paper>
         </Grid>
       </Grid>

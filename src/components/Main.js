@@ -1,5 +1,10 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import {
+  Switch,
+  Route,
+  Link as RouterLink,
+  useRouteMatch,
+} from 'react-router-dom'
 import clsx from 'clsx'
 import {
   makeStyles,
@@ -49,6 +54,9 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     maxWidth: 160,
+    flexGrow: 1,
+    textDecoration: 'none',
+    textAlign: 'center',
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -120,6 +128,7 @@ export default function Layout() {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
   const { pageTitle } = useGlobalContext()
+  const { path } = useRouteMatch()
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -177,11 +186,12 @@ export default function Layout() {
             className={classes.logo}
           /> */}
           <Typography
-            component='h1'
+            component={RouterLink}
+            to='/'
             variant='h6'
             color='inherit'
             noWrap
-            // className={classes.title}
+            className={classes.logo}
           >
             Entis Cloud
           </Typography>
@@ -199,10 +209,10 @@ export default function Layout() {
 
         {/* Main Content */}
         <Switch>
-          <Route path='/' component={Dashboard} exact />
-          <Route path='/dashboard' component={Dashboard} />
-          <Route path='/details' component={DetailsDash} />
-          <Route path='/contact' component={Contact} />
+          <Route path={`${path}`} component={Dashboard} exact />
+          <Route path={`${path}/dashboard`} component={Dashboard} />
+          <Route path={`${path}/details`} component={DetailsDash} />
+          <Route path={`${path}/contact`} component={Contact} />
           <Route component={NotFound} />
         </Switch>
 
