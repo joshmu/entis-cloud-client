@@ -27,3 +27,6 @@ yarn-error.log*
 
 # Mock Database API - JSON-Server
 createMockDb.js
+
+#templates
+/src/templates
