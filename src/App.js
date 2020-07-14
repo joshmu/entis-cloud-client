@@ -1,38 +1,43 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom'
+import React, { Fragment, Suspense, lazy } from 'react'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import './App.css'
 import 'typeface-roboto'
-import { CssBaseline, ThemeProvider } from '@material-ui/core'
-import Main from './components/Main'
+import { CssBaseline, MuiThemeProvider } from '@material-ui/core'
 import { GlobalProvider } from './contexts/globalContext'
-import customTheme from './styles/customTheme'
+import GlobalStyles from './GlobalStyles'
+import theme from './theme'
+import Pace from './components/Landing/shared/components/Pace'
+
+const LandingPage = lazy(() =>
+  import('./components/Landing/logged_out/components/Main')
+)
+const AdminPage = lazy(() => import('./components/Admin/Main'))
 
 function App() {
   return (
-    <GlobalProvider>
-      <ThemeProvider theme={customTheme}>
-        <Router>
+    <BrowserRouter>
+      <MuiThemeProvider theme={theme}>
+        <GlobalProvider>
           <CssBaseline />
-          <div className='App'>
+          <GlobalStyles />
+          <Pace color={theme.palette.primary.light} />
+          <Suspense fallback={<Fragment />}>
             <Switch>
               <Route exact path='/'>
-                <p>Welcome</p>
+                <LandingPage />
               </Route>
               <Route exact path='/login'>
                 <p>Login</p>
               </Route>
-              <Route path='/app' component={Main} />
+              <Route path='/app'>
+                <AdminPage />
+              </Route>
               <Redirect to='/' />
             </Switch>
-          </div>
-        </Router>
-      </ThemeProvider>
-    </GlobalProvider>
+          </Suspense>
+        </GlobalProvider>
+      </MuiThemeProvider>
+    </BrowserRouter>
   )
 }
 
