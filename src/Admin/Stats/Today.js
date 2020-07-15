@@ -8,7 +8,7 @@ import {
   Label,
   ResponsiveContainer,
 } from 'recharts'
-import Title from '../Elements/Title'
+import Title from '../shared/Title'
 
 /** @param {number} num */
 const create24Time = num => (num < 10 ? '0' + num : num) + ':00'

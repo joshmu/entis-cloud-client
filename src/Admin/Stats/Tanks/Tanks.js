@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Paper } from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import Title from '../../Elements/Title'
+import Title from '../../shared/Title'
 import LiquidGauge from './LiquidGauge'
 import { useGlobalContext } from '../../../contexts/globalContext'
 

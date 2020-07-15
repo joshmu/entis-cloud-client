@@ -15,7 +15,6 @@ import {
   Divider,
   IconButton,
   Badge,
-  Link,
   Container,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -32,19 +31,7 @@ import Dashboard from './Dashboard/Dashboard'
 import DetailsDash from './DetailsDash/DetailsDash'
 import Contact from './Contact/Contact'
 import NotFound from './NotFound/NotFound'
-
-function Copyright() {
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-      <Link color='inherit' href='https://irisi.com.au/'>
-        IRISI
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
+import Copyright from '../shared/Copyright'
 
 const drawerWidth = 240
 

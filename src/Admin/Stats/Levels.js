@@ -8,7 +8,7 @@ import {
   Bar,
   Tooltip,
 } from 'recharts'
-import Title from '../Elements/Title'
+import Title from '../shared/Title'
 
 import { useGlobalContext } from '../../contexts/globalContext'
 

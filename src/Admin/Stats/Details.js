@@ -6,7 +6,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import Title from '../Elements/Title'
+import Title from '../shared/Title'
 
 import { useGlobalContext } from '../../contexts/globalContext'
 
