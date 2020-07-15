@@ -21,13 +21,13 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function Orders() {
+const Details = () => {
   const classes = useStyles()
   const { db } = useGlobalContext()
 
   return (
-    <React.Fragment>
-      <Title>Details Log</Title>
+    <>
+      <Title>Summary Logs</Title>
       {db.tanks ? (
         <>
           <Table size='small'>
@@ -59,6 +59,8 @@ export default function Orders() {
       ) : (
         <p>Loading...</p>
       )}
-    </React.Fragment>
+    </>
   )
 }
+
+export default Details

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { makeStyles, Container, Grid, Paper } from '@material-ui/core'
+import { Container, Grid, Paper } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import Details from '../Stats/Details'
 
 import { useGlobalContext } from '../../contexts/globalContext'

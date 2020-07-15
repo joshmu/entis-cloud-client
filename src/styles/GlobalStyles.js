@@ -1,4 +1,4 @@
-import { withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
 // import { yellow } from '@material-ui/core/colors'
 
 const styles = theme => ({

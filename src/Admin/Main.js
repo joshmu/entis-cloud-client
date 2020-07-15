@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom'
 import clsx from 'clsx'
 import {
-  makeStyles,
   Drawer,
   Box,
   AppBar,
@@ -19,6 +18,7 @@ import {
   Link,
   Container,
 } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Menu as MenuIcon,
   ChevronLeft as ChevronLeftIcon,

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import clsx from 'clsx'
-import { makeStyles, Container, Grid, Paper } from '@material-ui/core'
+import { Container, Grid, Paper } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import Today from '../Stats/Today'
 import Levels from '../Stats/Levels'
 import Summary from '../Stats/Summary'
