@@ -2,7 +2,8 @@ import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { Container, Typography, Grid, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { useSnackbar } from 'notistack'
+import { useGlobalContext } from '../../../contexts/globalContext'
+import { useNotify } from '../../../shared/Notifications'
 
 const useStyles = makeStyles(theme => ({
   heroContent: {
@@ -16,16 +17,16 @@ const useStyles = makeStyles(theme => ({
 
 const Hero = () => {
   const classes = useStyles()
-  const { enqueueSnackbar } = useSnackbar()
+  const { setAuthorized } = useGlobalContext()
+  const notify = useNotify()
 
   const title = 'Entis Cloud'
   const description =
     'Connecting you to what matters most, cloud infrastructure at your finger tips.'
 
   const login = e => {
-    enqueueSnackbar('Your are logged in.', {
-      variant: 'success',
-    })
+    notify('Your are logged in.', 'success')
+    setAuthorized(true)
   }
 
   return (

@@ -7,17 +7,17 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import { GlobalProvider } from './contexts/globalContext'
 import GlobalStyles from './styles/GlobalStyles'
 import theme from './styles/theme'
-import {NotificationProvider} from './Notifications/Notifications'
+import { NotificationProvider } from './shared/Notifications'
 
 import LandingPage from './Landing/Main'
 import AdminPage from './Admin/Main'
 
 function App() {
   return (
-    <GlobalProvider>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <NotificationProvider>
+    <NotificationProvider>
+      <GlobalProvider>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
             <CssBaseline />
             <GlobalStyles />
             <Switch>
@@ -25,10 +25,10 @@ function App() {
               <Route path='/app' component={AdminPage} />
               <Redirect to='/' />
             </Switch>
-          </NotificationProvider>
-        </ThemeProvider>
-      </BrowserRouter>
-    </GlobalProvider>
+          </ThemeProvider>
+        </BrowserRouter>
+      </GlobalProvider>
+    </NotificationProvider>
   )
 }
 

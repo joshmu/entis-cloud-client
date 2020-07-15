@@ -172,6 +172,7 @@ export default function Layout() {
             alt='logo'
             className={classes.logo}
           /> */}
+
           <Typography
             component={RouterLink}
             to='/'

@@ -17,14 +17,19 @@ import {
   Assignment as AssignmentIcon,
   Person as PersonIcon,
 } from '@material-ui/icons'
-import {useNotify} from '../../Notifications/Notifications'
+import { useGlobalContext } from '../../contexts/globalContext'
+import { useNotify } from '../../shared/Notifications'
 
 const SideMenu = () => {
   const { url } = useRouteMatch()
-  const notify = useNotify('You are logged out.', 'info')
+  const { setAuthorized, setDb } = useGlobalContext()
+  const notify = useNotify()
 
   const logout = e => {
-    notify()
+    notify('You are logged out.', 'info')
+    // todo: this will be replaced when real auth is put in place
+    setDb({})
+    setAuthorized(false)
   }
 
   return (

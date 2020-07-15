@@ -18,9 +18,10 @@ const NotificationProvider = props => {
   )
 }
 
-const useNotify = (message, status) => {
+const useNotify = () => {
   const { enqueueSnackbar } = useSnackbar()
-  return () => enqueueSnackbar(message, { variant: status || 'default' })
+  return (message, status, options = {}) =>
+    enqueueSnackbar(message, { variant: status || 'default', ...options })
 }
 
 export { NotificationProvider, useNotify }
