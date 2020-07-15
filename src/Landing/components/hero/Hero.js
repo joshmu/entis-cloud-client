@@ -2,6 +2,7 @@ import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { Container, Typography, Grid, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import { useSnackbar } from 'notistack'
 
 const useStyles = makeStyles(theme => ({
   heroContent: {
@@ -15,10 +16,17 @@ const useStyles = makeStyles(theme => ({
 
 const Hero = () => {
   const classes = useStyles()
+  const { enqueueSnackbar } = useSnackbar()
 
   const title = 'Entis Cloud'
   const description =
     'Connecting you to what matters most, cloud infrastructure at your finger tips.'
+
+  const login = e => {
+    enqueueSnackbar('Your are logged in.', {
+      variant: 'success',
+    })
+  }
 
   return (
     <div className={classes.heroContent}>
@@ -43,6 +51,7 @@ const Hero = () => {
                 color='primary'
                 component={RouterLink}
                 to='/app'
+                onClick={login}
               >
                 View Dashboard
               </Button>

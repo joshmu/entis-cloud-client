@@ -7,24 +7,25 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import { GlobalProvider } from './contexts/globalContext'
 import GlobalStyles from './styles/GlobalStyles'
 import theme from './styles/theme'
+import {NotificationProvider} from './Notifications/Notifications'
 
 import LandingPage from './Landing/Main'
 import AdminPage from './Admin/Main'
-
-// todo: need to specifiy home route and be able to traverse via link clicks (hard url doesn't work in netlify?)
 
 function App() {
   return (
     <GlobalProvider>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <GlobalStyles />
-          <Switch>
-            <Route exact path='/' component={LandingPage} />
-            <Route path='/app' component={AdminPage} />
-            <Redirect to='/' />
-          </Switch>
+          <NotificationProvider>
+            <CssBaseline />
+            <GlobalStyles />
+            <Switch>
+              <Route exact path='/' component={LandingPage} />
+              <Route path='/app' component={AdminPage} />
+              <Redirect to='/' />
+            </Switch>
+          </NotificationProvider>
         </ThemeProvider>
       </BrowserRouter>
     </GlobalProvider>

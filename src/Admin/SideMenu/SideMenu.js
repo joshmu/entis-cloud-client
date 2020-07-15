@@ -17,12 +17,14 @@ import {
   Assignment as AssignmentIcon,
   Person as PersonIcon,
 } from '@material-ui/icons'
+import {useNotify} from '../../Notifications/Notifications'
 
 const SideMenu = () => {
   const { url } = useRouteMatch()
+  const notify = useNotify('You are logged out.', 'info')
 
   const logout = e => {
-    window.alert('You have been logged out.')
+    notify()
   }
 
   return (
