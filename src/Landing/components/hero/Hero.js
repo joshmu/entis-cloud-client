@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import { Container, Typography, Grid, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -37,7 +38,12 @@ const Hero = () => {
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify='center'>
             <Grid item>
-              <Button variant='contained' color='primary'>
+              <Button
+                variant='contained'
+                color='primary'
+                component={RouterLink}
+                to='/app'
+              >
                 View Dashboard
               </Button>
             </Grid>

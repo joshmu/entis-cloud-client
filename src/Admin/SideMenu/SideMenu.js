@@ -63,7 +63,7 @@ const SideMenu = () => {
           <ListItemText primary='Contact' />
         </ListItem>
 
-        <ListItem button component={Link} to='/login' onClick={logout}>
+        <ListItem button component={Link} to='/' onClick={logout}>
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>

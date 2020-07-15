@@ -21,9 +21,9 @@ function App() {
           <CssBaseline />
           <GlobalStyles />
           <Switch>
-            <Route path='/landing' component={LandingPage} />
+            <Route exact path='/' component={LandingPage} />
             <Route path='/app' component={AdminPage} />
-            <Redirect to='/app' />
+            <Redirect to='/' />
           </Switch>
         </ThemeProvider>
       </BrowserRouter>
