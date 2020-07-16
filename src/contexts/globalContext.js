@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import { useNotify } from '../shared/Notifications'
-import { useLocalStorage } from 'react-use'
+import useLocalStorage from '../hooks/useLocalStorage'
 
 import mockDb from '../mockDb.json'
 
@@ -14,7 +14,7 @@ export const GlobalProvider = ({ children }) => {
   const [auth, setAuth] = useState(false)
   const [db, setDb] = useState({})
   const notify = useNotify()
-  const [token, setToken, removeToken] = useLocalStorage('token')
+  const [token, setToken] = useLocalStorage('token')
 
   useEffect(() => {
     // logged in and haven't fetched data yet
@@ -36,13 +36,13 @@ export const GlobalProvider = ({ children }) => {
     // eslint-disable-next-line
   }, [db, auth])
 
-  // todo: lets make our own localstorage hook based on the one we are using as its not updating?
   // todo: on mount checkToken expiration and remove if expired
   // todo: listen for existence of token to decide on auth
   // todo: login should just get token as success
   // todo: need login route
+  // todo: add today data to local db
 
-  const register = ({ username, password }) => {
+  const register = async ({ username, password }) => {
     console.log('register')
     // fetch('http://localhost:3333/api/register', {
     return fetch('https://entis-cloud-server.herokuapp.com/api/register', {
