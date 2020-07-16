@@ -43,19 +43,21 @@ export const GlobalProvider = ({ children }) => {
 
   const register = async ({ username, password }) => {
     // fetch('http://localhost:3333/api/register', {
-    await fetch('https://entis-cloud-server.herokuapp.com/api/register', {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-    })
-      .then(response => response.json())
-      .then(token => {
-        console.log('new token!', { token })
-        setToken(token)
-      })
-      .catch(error => {
-        console.error(error)
-        notify('username invalid', 'error')
-      })
+    try {
+      const response = await fetch(
+        'https://entis-cloud-server.herokuapp.com/api/register',
+        {
+          method: 'POST',
+          body: JSON.stringify({ username, password }),
+        }
+      )
+      const token = await response.json()
+      console.log('new token!', { token })
+      setToken(token)
+    } catch (error) {
+      console.error(error)
+      notify('username invalid', 'error')
+    }
   }
 
   const fetchDb = token => {
