@@ -24,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn run build && netlify deploy --prod",
+    "deploy": "git push origin master && yarn run build && netlify deploy --prod",
     "json-server": "npx json-server --watch ./src/mockDb.json --port 3333"
   },
   "eslintConfig": {
