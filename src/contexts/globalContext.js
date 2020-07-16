@@ -20,7 +20,10 @@ export const GlobalProvider = ({ children }) => {
     // logged in and haven't fetched data yet
     if (auth && Object.keys(db).length === 0) {
       ;(async () => {
-        await register({ username: 'test@test.com', password: 'test' })
+        await register({
+          username: 'test@test.com',
+          password: 'test',
+        })
         notify('Your are logged in.', 'success')
         fetchDb(token)
       })()
@@ -38,9 +41,9 @@ export const GlobalProvider = ({ children }) => {
   // todo: login should just get token as success
   // todo: need login route
 
-  const register = ({ username, password }) => {
+  const register = async ({ username, password }) => {
     // fetch('http://localhost:3333/api/register', {
-    fetch('https://entis-cloud-server.herokuapp.com/api/register', {
+    await fetch('https://entis-cloud-server.herokuapp.com/api/register', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
     })
@@ -56,6 +59,7 @@ export const GlobalProvider = ({ children }) => {
   }
 
   const fetchDb = token => {
+    console.log('sending', token)
     // fetch('http://localhost:3333/api', {
     fetch('https://entis-cloud-server.herokuapp.com/api', {
       headers: {
