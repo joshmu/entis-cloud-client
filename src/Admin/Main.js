@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Switch,
   Route,
@@ -25,6 +25,7 @@ import {
 } from '@material-ui/icons'
 
 import { useGlobalContext } from '../contexts/globalContext'
+import { createBreakpoint } from 'react-use'
 
 import SideMenu from './SideMenu/SideMenu'
 import Dashboard from './Dashboard/Dashboard'
@@ -111,11 +112,20 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function Layout() {
+const useBreakpoint = createBreakpoint()
+
+const Admin = () => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
   const { pageTitle } = useGlobalContext()
   const { path } = useRouteMatch()
+
+  // detect screen size and toggle side menu
+  const breakpoint = useBreakpoint()
+  useEffect(() => {
+    // 'laptopL', 'laptop', 'tablet'
+    setOpen(['laptopL', 'laptop'].some(size => size === breakpoint))
+  }, [breakpoint])
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -213,3 +223,5 @@ export default function Layout() {
     </div>
   )
 }
+
+export default Admin
