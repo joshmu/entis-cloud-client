@@ -6,16 +6,18 @@ import Features from './components/features/Features'
 import Footer from './components/footer/Footer'
 import WaveBorder from '../shared/WaveBorder'
 import LoginDialog from '../Dialogs/LoginDialog'
+import Banner from './components/banner/Banner'
 
 export default function Album() {
   const theme = useTheme()
 
   return (
     <>
+      <LoginDialog />
       <Navbar />
       <main>
         <Hero />
-        <LoginDialog />
+        <Banner />
         <WaveBorder
           upperColor={theme.palette.background.paper}
           lowerColor={theme.palette.background.default}
