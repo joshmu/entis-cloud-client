@@ -1,12 +1,13 @@
 import React from 'react'
 import Link from '@material-ui/core/Link'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Title from '../shared/Title'
+import { interpolateRgb } from 'd3-interpolate'
 
 import { useGlobalContext } from '../../contexts/globalContext'
 
@@ -24,6 +25,16 @@ const useStyles = makeStyles(theme => ({
 const Details = () => {
   const classes = useStyles()
   const { db } = useGlobalContext()
+  const theme = useTheme()
+
+  const createRowColorForLowHalf = value => {
+    const startColor = theme.palette.secondary.light
+    const endColor = theme.palette.background.paper
+    const interpolate = interpolateRgb(startColor, endColor)
+    // value needs to be in range of 0-1, however we *2 so we can only color the first 50% of values
+    const color = interpolate((value / 100) * 2)
+    return color
+  }
 
   return (
     <>
@@ -44,7 +55,13 @@ const Details = () => {
                 <TableRow key={idx}>
                   <TableCell>{row.name}</TableCell>
                   <TableCell>{row.description || 'tank comment'}</TableCell>
-                  <TableCell>{row.value}</TableCell>
+                  <TableCell
+                    style={{
+                      backgroundColor: createRowColorForLowHalf(row.value),
+                    }}
+                  >
+                    {row.value}
+                  </TableCell>
                   {/* <TableCell align='right'>{row.amount}</TableCell> */}
                 </TableRow>
               ))}
