@@ -15,11 +15,14 @@ const Banner = () => {
   return (
     <Container className={classes.container}>
       <Grid container justify='center'>
-        <img
-          src={honeywellImg}
-          alt='honeywell compnay logo banner'
-          width='33%'
-        />
+        <Grid item xs={8} sm={6} md={4}>
+          <img
+            src={honeywellImg}
+            alt='honeywell compnay logo banner'
+            height='100%'
+            width='100%'
+          />
+        </Grid>
       </Grid>
     </Container>
   )
