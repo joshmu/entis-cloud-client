@@ -22,7 +22,7 @@ export const GlobalProvider = ({ children }) => {
       ;(async () => {
         await register({ username: 'test@test.com', password: 'test' })
         notify('Your are logged in.', 'success')
-        fetchDb()
+        fetchDb(token)
       })()
     }
     // if we logout and we did have data
@@ -55,7 +55,7 @@ export const GlobalProvider = ({ children }) => {
       })
   }
 
-  const fetchDb = () => {
+  const fetchDb = token => {
     // fetch('http://localhost:3333/api', {
     fetch('https://entis-cloud-server.herokuapp.com/api', {
       headers: {
