@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import { useNotify } from '../shared/Notifications'
+import { useLocalStorage } from 'react-use'
 
 import mockDb from '../mockDb.json'
 
@@ -13,12 +14,16 @@ export const GlobalProvider = ({ children }) => {
   const [auth, setAuth] = useState(false)
   const [db, setDb] = useState({})
   const notify = useNotify()
+  const [token, setToken, removeToken] = useLocalStorage('token')
 
   useEffect(() => {
     // logged in and haven't fetched data yet
     if (auth && Object.keys(db).length === 0) {
-      notify('Your are logged in.', 'success')
-      fetchDb()
+      ;(async () => {
+        await register({ username: 'test@test.com', password: 'test' })
+        notify('Your are logged in.', 'success')
+        fetchDb()
+      })()
     }
     // if we logout and we did have data
     if (!auth && Object.keys(db).length > 0) {
@@ -28,8 +33,35 @@ export const GlobalProvider = ({ children }) => {
     // eslint-disable-next-line
   }, [db, auth])
 
+  // todo: on mount checkToken expiration and remove if expired
+  // todo: listen for existence of token to decide on auth
+  // todo: login should just get token as success
+  // todo: need login route
+
+  const register = ({ username, password }) => {
+    // fetch('http://localhost:3333/api/register', {
+    fetch('https://entis-cloud-server.herokuapp.com/api/register', {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+    })
+      .then(response => response.json())
+      .then(token => {
+        console.log('new token!', { token })
+        setToken(token)
+      })
+      .catch(error => {
+        console.error(error)
+        notify('username invalid', 'error')
+      })
+  }
+
   const fetchDb = () => {
-    fetch('https://entis-cloud-server.herokuapp.com/api')
+    // fetch('http://localhost:3333/api', {
+    fetch('https://entis-cloud-server.herokuapp.com/api', {
+      headers: {
+        authorization: 'Bearer ' + token,
+      },
+    })
       .then(response => response.json())
       .then(data => {
         notify('Using mock data from the server.', 'warning')
