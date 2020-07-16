@@ -19,14 +19,14 @@ export const GlobalProvider = ({ children }) => {
   useEffect(() => {
     // logged in and haven't fetched data yet
     if (auth && Object.keys(db).length === 0) {
-      ;(async () => {
-        await register({
-          username: 'test@test.com',
-          password: 'test',
-        })
-        notify('Your are logged in.', 'success')
+      register({
+        username: 'test@test.com',
+        password: 'test',
+      }).then(token => {
+        console.log('fetch')
         fetchDb(token)
-      })()
+      })
+      notify('Your are logged in.', 'success')
     }
     // if we logout and we did have data
     if (!auth && Object.keys(db).length > 0) {
@@ -36,28 +36,29 @@ export const GlobalProvider = ({ children }) => {
     // eslint-disable-next-line
   }, [db, auth])
 
+  // todo: lets make our own localstorage hook based on the one we are using as its not updating?
   // todo: on mount checkToken expiration and remove if expired
   // todo: listen for existence of token to decide on auth
   // todo: login should just get token as success
   // todo: need login route
 
-  const register = async ({ username, password }) => {
+  const register = ({ username, password }) => {
+    console.log('register')
     // fetch('http://localhost:3333/api/register', {
-    try {
-      const response = await fetch(
-        'https://entis-cloud-server.herokuapp.com/api/register',
-        {
-          method: 'POST',
-          body: JSON.stringify({ username, password }),
-        }
-      )
-      const token = await response.json()
-      console.log('new token!', { token })
-      setToken(token)
-    } catch (error) {
-      console.error(error)
-      notify('username invalid', 'error')
-    }
+    return fetch('https://entis-cloud-server.herokuapp.com/api/register', {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+    })
+      .then(res => res.json())
+      .then(token => {
+        console.log('new token!', { token })
+        setToken(token)
+        return token
+      })
+      .catch(error => {
+        console.error(error)
+        notify('username invalid', 'error')
+      })
   }
 
   const fetchDb = token => {
