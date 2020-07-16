@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 const Banner = () => {
   const classes = useStyles()
   return (
-    <Container className={classes.container}>
+    <Container className={classes.container} maxWidth={false}>
       <Grid container justify='center'>
         <Grid item xs={8} sm={6} md={4}>
           <img
