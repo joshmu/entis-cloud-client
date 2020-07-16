@@ -18,18 +18,13 @@ import {
   Person as PersonIcon,
 } from '@material-ui/icons'
 import { useGlobalContext } from '../../contexts/globalContext'
-import { useNotify } from '../../shared/Notifications'
 
 const SideMenu = () => {
   const { url } = useRouteMatch()
-  const { setAuthorized, setDb } = useGlobalContext()
-  const notify = useNotify()
+  const { setAuth } = useGlobalContext()
 
   const logout = e => {
-    notify('You are logged out.', 'info')
-    // todo: this will be replaced when real auth is put in place
-    setDb({})
-    setAuthorized(false)
+    setAuth(false)
   }
 
   return (

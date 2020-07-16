@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
 import { Container, Typography, Grid, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { useGlobalContext } from '../../../contexts/globalContext'
-import { useNotify } from '../../../shared/Notifications'
 
 const useStyles = makeStyles(theme => ({
   heroContent: {
@@ -17,16 +15,14 @@ const useStyles = makeStyles(theme => ({
 
 const Hero = () => {
   const classes = useStyles()
-  const { setAuthorized } = useGlobalContext()
-  const notify = useNotify()
+  const { setOpenLoginDialog } = useGlobalContext()
 
   const title = 'Entis Cloud'
   const description =
     'Connecting you to what matters most, cloud infrastructure at your finger tips.'
 
-  const login = e => {
-    notify('Your are logged in.', 'success')
-    setAuthorized(true)
+  const handleClickPrimary = e => {
+    setOpenLoginDialog(true)
   }
 
   return (
@@ -50,9 +46,7 @@ const Hero = () => {
               <Button
                 variant='contained'
                 color='primary'
-                component={RouterLink}
-                to='/app'
-                onClick={login}
+                onClick={handleClickPrimary}
               >
                 View Dashboard
               </Button>

@@ -4,6 +4,7 @@ import {
   Route,
   Link as RouterLink,
   useRouteMatch,
+  Redirect,
 } from 'react-router-dom'
 import clsx from 'clsx'
 import {
@@ -16,6 +17,7 @@ import {
   IconButton,
   Badge,
   Container,
+  LinearProgress,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -117,7 +119,7 @@ const useBreakpoint = createBreakpoint()
 const Admin = () => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
-  const { pageTitle } = useGlobalContext()
+  const { pageTitle, auth, db } = useGlobalContext()
   const { path } = useRouteMatch()
 
   // detect screen size and toggle side menu
@@ -135,92 +137,108 @@ const Admin = () => {
   }
 
   return (
-    <div className={classes.root}>
-      <AppBar
-        position='absolute'
-        className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge='start'
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden
-            )}
+    <>
+      {auth ? (
+        <div className={classes.root}>
+          <AppBar
+            position='absolute'
+            className={clsx(classes.appBar, open && classes.appBarShift)}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            component='h1'
-            variant='h6'
-            color='inherit'
-            noWrap
-            className={classes.title}
+            <Toolbar className={classes.toolbar}>
+              <IconButton
+                edge='start'
+                color='inherit'
+                aria-label='open drawer'
+                onClick={handleDrawerOpen}
+                className={clsx(
+                  classes.menuButton,
+                  open && classes.menuButtonHidden
+                )}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                component='h1'
+                variant='h6'
+                color='inherit'
+                noWrap
+                className={classes.title}
+              >
+                {pageTitle}
+              </Typography>
+              <IconButton color='inherit'>
+                <Badge badgeContent={4} color='secondary'>
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            variant='permanent'
+            classes={{
+              paper: clsx(
+                classes.drawerPaper,
+                !open && classes.drawerPaperClose
+              ),
+            }}
+            open={open}
           >
-            {pageTitle}
-          </Typography>
-          <IconButton color='inherit'>
-            <Badge badgeContent={4} color='secondary'>
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant='permanent'
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          {/* <img
+            <div className={classes.toolbarIcon}>
+              {/* <img
             src='https://unsplash.it/160/40'
             alt='logo'
             className={classes.logo}
           /> */}
 
-          <Typography
-            component={RouterLink}
-            to='/'
-            variant='h6'
-            color='inherit'
-            noWrap
-            className={classes.logo}
-          >
-            Entis Cloud
-          </Typography>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
+              <Typography
+                component={RouterLink}
+                to='/'
+                variant='h6'
+                color='inherit'
+                noWrap
+                className={classes.logo}
+              >
+                Entis Cloud
+              </Typography>
+              <IconButton onClick={handleDrawerClose}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </div>
+            <Divider />
+
+            {/* Side Menu */}
+            <SideMenu />
+          </Drawer>
+          <main className={classes.content}>
+            <div className={classes.appBarSpacer} />
+
+            {/* Main Content */}
+            {Object.keys(db).length === 0 ? (
+              <LinearProgress
+                aria-describedby='dashboard data loading'
+                aria-busy={true}
+              />
+            ) : (
+              <Switch>
+                <Route path={`${path}`} component={Dashboard} exact />
+                <Route path={`${path}/dashboard`} component={Dashboard} />
+                <Route path={`${path}/details`} component={DetailsDash} />
+                <Route path={`${path}/contact`} component={Contact} />
+                <Route component={NotFound} />
+              </Switch>
+            )}
+
+            <Container maxWidth='lg' className={classes.container}>
+              <Box pt={4}>
+                <Copyright />
+              </Box>
+            </Container>
+          </main>
         </div>
-        <Divider />
-
-        {/* Side Menu */}
-        <SideMenu />
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-
-        {/* Main Content */}
-        <Switch>
-          <Route path={`${path}`} component={Dashboard} exact />
-          <Route path={`${path}/dashboard`} component={Dashboard} />
-          <Route path={`${path}/details`} component={DetailsDash} />
-          <Route path={`${path}/contact`} component={Contact} />
-          <Route component={NotFound} />
-        </Switch>
-
-        <Container maxWidth='lg' className={classes.container}>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
-      </main>
-    </div>
+      ) : (
+        <Redirect to='/' />
+      )}
+    </>
   )
 }
 

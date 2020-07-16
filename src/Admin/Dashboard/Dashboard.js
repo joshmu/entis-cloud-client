@@ -37,7 +37,7 @@ export default function Dashboard() {
   return (
     <Container maxWidth='lg' className={classes.container}>
       <Grid container spacing={3}>
-        {/* Chart */}
+        {/* Levels */}
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper}>
             <Levels />
@@ -51,15 +51,15 @@ export default function Dashboard() {
           </Paper>
         </Grid>
 
-        {/* Tanks */}
-        <Tanks />
-
-        {/* Chart */}
+        {/* Today Line */}
         <Grid item xs={12}>
           <Paper className={fixedHeightPaper}>
             <Today />
           </Paper>
         </Grid>
+
+        {/* Tanks */}
+        <Tanks />
       </Grid>
     </Container>
   )

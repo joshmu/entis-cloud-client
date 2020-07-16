@@ -9,12 +9,15 @@ export const globalContext = createContext(initialContext)
 
 export const GlobalProvider = ({ children }) => {
   const [pageTitle, setPageTitle] = useState('')
-  const [authorized, setAuthorized] = useState(false)
+  const [openLoginDialog, setOpenLoginDialog] = useState(false)
+  const [auth, setAuth] = useState(false)
   const [db, setDb] = useState({})
   const notify = useNotify()
 
   useEffect(() => {
-    if (authorized && Object.keys(db).length === 0) {
+    // logged in and haven't fetched data yet
+    if (auth && Object.keys(db).length === 0) {
+      notify('Your are logged in.', 'success')
       fetch('http://localhost:3333/db')
         .then(response => response.json())
         .then(data => setDb(data.db))
@@ -23,15 +26,31 @@ export const GlobalProvider = ({ children }) => {
           console.log('using local mock db')
           // @ts-ignore
           notify('Using mock db data.', 'warning')
-          setDb(mockDb.db)
+          setTimeout(() => {
+            setDb(mockDb.db)
+          }, 2000)
         })
     }
+    // if we logout and we did have data
+    if (!auth && Object.keys(db).length > 0) {
+      notify('Your are logged out.', 'info')
+      setDb({})
+    }
     // eslint-disable-next-line
-  }, [db, authorized])
+  }, [db, auth])
 
   return (
     <globalContext.Provider
-      value={{ pageTitle, setPageTitle, db, setDb, setAuthorized }}
+      value={{
+        pageTitle,
+        setPageTitle,
+        db,
+        setDb,
+        auth,
+        setAuth,
+        openLoginDialog,
+        setOpenLoginDialog,
+      }}
     >
       {children}
     </globalContext.Provider>
