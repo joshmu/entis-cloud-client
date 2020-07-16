@@ -15,15 +15,17 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Tanks() {
-  const { db } = useGlobalContext()
+  const {
+    db: { tanks },
+  } = useGlobalContext()
 
   const theme = useTheme()
   const classes = useStyles()
 
   return (
     <>
-      {db?.tanks ? (
-        db.tanks.slice(0, 4).map((tank, index) => (
+      {tanks ? (
+        tanks.slice(0, 4).map((tank, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <Paper className={classes.paper}>
               <Title>{tank.name}</Title>

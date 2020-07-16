@@ -18,18 +18,7 @@ export const GlobalProvider = ({ children }) => {
     // logged in and haven't fetched data yet
     if (auth && Object.keys(db).length === 0) {
       notify('Your are logged in.', 'success')
-      fetch('http://localhost:3333/db')
-        .then(response => response.json())
-        .then(data => setDb(data.db))
-        .catch(err => {
-          // rather than showing error lets now switch to local mock db
-          console.log('using local mock db')
-          // @ts-ignore
-          notify('Using mock db data.', 'warning')
-          setTimeout(() => {
-            setDb(mockDb.db)
-          }, 2000)
-        })
+      fetchDb()
     }
     // if we logout and we did have data
     if (!auth && Object.keys(db).length > 0) {
@@ -38,6 +27,21 @@ export const GlobalProvider = ({ children }) => {
     }
     // eslint-disable-next-line
   }, [db, auth])
+
+  const fetchDb = () => {
+    fetch('https://entis-cloud-server.herokuapp.com/api')
+      .then(response => response.json())
+      .then(data => {
+        notify('Using mock data from the server.', 'warning')
+        console.log({ data })
+        setDb(data)
+      })
+      .catch(err => {
+        // @ts-ignore
+        notify('Using local mock data.', 'warning')
+        setDb(mockDb.db)
+      })
+  }
 
   return (
     <globalContext.Provider

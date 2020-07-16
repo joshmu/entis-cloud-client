@@ -24,7 +24,9 @@ const useStyles = makeStyles(theme => ({
 
 const Details = () => {
   const classes = useStyles()
-  const { db } = useGlobalContext()
+  const {
+    db: { tanks },
+  } = useGlobalContext()
   const theme = useTheme()
 
   const createRowColorForLowHalf = value => {
@@ -39,7 +41,7 @@ const Details = () => {
   return (
     <>
       <Title>Summary Logs</Title>
-      {db.tanks ? (
+      {tanks ? (
         <>
           <Table size='small'>
             <TableHead>
@@ -51,7 +53,7 @@ const Details = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {db.tanks.map((row, idx) => (
+              {tanks.map((row, idx) => (
                 <TableRow key={idx}>
                   <TableCell>{row.name}</TableCell>
                   <TableCell>{row.description || 'tank comment'}</TableCell>

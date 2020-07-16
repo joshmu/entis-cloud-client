@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import { useTheme } from '@material-ui/core/styles'
 import {
@@ -9,21 +10,12 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import Title from '../shared/Title'
-
-/** @param {number} num */
-const create24Time = num => (num < 10 ? '0' + num : num) + ':00'
-
-const hoursNow = new Date().getHours()
-const data = new Array(24).fill({}).map((d, i) => {
-  let amount
-  if (i < hoursNow) amount = Math.random() * 100 + i * 10
-  return {
-    time: create24Time(i + 1),
-    value: amount,
-  }
-})
+import { useGlobalContext } from '../../contexts/globalContext'
 
 export default function Chart() {
+  const {
+    db: { today: data },
+  } = useGlobalContext()
   const theme = useTheme()
 
   return (

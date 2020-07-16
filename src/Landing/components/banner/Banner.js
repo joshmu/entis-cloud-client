@@ -18,7 +18,7 @@ const Banner = () => {
         <Grid item xs={8} sm={6} md={4}>
           <img
             src={honeywellImg}
-            alt='honeywell compnay logo banner'
+            alt='honeywell company logo banner'
             height='100%'
             width='100%'
           />

@@ -19,18 +19,20 @@ const formatTooltipValue = (value, name, props) => [
 
 export default function Levels() {
   const theme = useTheme()
-  const { db } = useGlobalContext()
+  const {
+    db: { tanks },
+  } = useGlobalContext()
 
   return (
     <>
-      {db?.tanks ? (
+      {tanks ? (
         <>
           <Title>Levels</Title>
           <ResponsiveContainer>
             <BarChart
               width={500}
               height={300}
-              data={db.tanks}
+              data={tanks}
               margin={{
                 top: 16,
                 right: 16,
