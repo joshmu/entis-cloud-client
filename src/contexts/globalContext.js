@@ -66,7 +66,7 @@ export const GlobalProvider = ({ children }) => {
     // fetch('http://localhost:3333/api', {
     fetch('https://entis-cloud-server.herokuapp.com/api', {
       headers: {
-        authorization: 'Bearer ' + token,
+        authorization: token,
       },
     })
       .then(response => response.json())
