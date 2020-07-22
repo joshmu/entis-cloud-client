@@ -12,9 +12,9 @@ import { useGlobalContext } from '../contexts/globalContext'
 
 const FormDialog = () => {
   const {
+    login,
     openLoginDialog: open,
     setOpenLoginDialog: setOpen,
-    setAuth,
   } = useGlobalContext()
 
   // const handleClickOpen = () => {
@@ -27,7 +27,8 @@ const FormDialog = () => {
 
   const handleLogin = () => {
     setOpen(false)
-    setAuth(true)
+    // todo: pass username and password
+    login()
     // todo: how to redirect?
   }
 
