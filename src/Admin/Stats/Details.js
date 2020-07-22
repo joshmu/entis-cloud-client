@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 const Details = () => {
   const classes = useStyles()
   const {
-    db: { tanks },
+    db: { assets },
   } = useGlobalContext()
   const theme = useTheme()
 
@@ -41,28 +41,31 @@ const Details = () => {
   return (
     <>
       <Title>Summary Logs</Title>
-      {tanks ? (
+      {assets ? (
         <>
           <Table size='small'>
             <TableHead>
               <TableRow>
-                <TableCell>Tank ID</TableCell>
+                <TableCell>Asset ID</TableCell>
                 <TableCell>Description</TableCell>
                 <TableCell>Value</TableCell>
                 {/* <TableCell align='right'>Sale Amount</TableCell> */}
               </TableRow>
             </TableHead>
             <TableBody>
-              {tanks.map((row, idx) => (
+              {assets.map((asset, idx) => (
                 <TableRow key={idx}>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.description || 'tank comment'}</TableCell>
+                  <TableCell>{asset.asset_name}</TableCell>
                   <TableCell
+                  align='left'
                     style={{
-                      backgroundColor: createRowColorForLowHalf(row.value),
+                      backgroundColor: createRowColorForLowHalf(asset.value),
                     }}
                   >
-                    {row.value}
+                    {asset.value}
+                  </TableCell>
+                  <TableCell>
+                    {asset.description || 'asset description'}
                   </TableCell>
                   {/* <TableCell align='right'>{row.amount}</TableCell> */}
                 </TableRow>

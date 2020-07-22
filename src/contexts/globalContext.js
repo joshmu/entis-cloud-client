@@ -19,7 +19,6 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     // logged in and haven't fetched data yet
-    console.log({ auth, db, token })
     if (auth && Object.keys(db).length === 0 && token) {
       console.log('fetching with state token')
       fetchDb(token)
@@ -41,9 +40,11 @@ export const GlobalProvider = ({ children }) => {
   const login = async ({ username = '', password = '' } = {}) => {
     console.log('login')
 
-    // todo: remove when we are done
-    if (!username) username = 'test@test.com'
-    if (!password) password = 'test'
+    const autoLogin = true
+    if (autoLogin) {
+      if (!username) username = 'test@test.com'
+      if (!password) password = 'test'
+    }
 
     return (
       fetch('http://localhost:3333/api/login', {

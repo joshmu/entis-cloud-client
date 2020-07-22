@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -11,6 +11,8 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { useGlobalContext } from '../contexts/globalContext'
 
 const FormDialog = () => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const {
     login,
     openLoginDialog: open,
@@ -25,11 +27,16 @@ const FormDialog = () => {
     setOpen(false)
   }
 
-  const handleLogin = () => {
+  const handleLogin = e => {
+    e.preventDefault()
     setOpen(false)
-    // todo: pass username and password
-    login()
-    // todo: how to redirect?
+    login({ username, password })
+  }
+
+  const handleUsernameChange = e => setUsername(e.target.value)
+  const handlePasswordChange = e => setPassword(e.target.value)
+  const handleKeypress = e => {
+    if (e.charCode === 13) handleLogin(e)
   }
 
   return (
@@ -51,6 +58,9 @@ const FormDialog = () => {
           label='Email Address'
           type='email'
           fullWidth
+          value={username}
+          onChange={handleUsernameChange}
+          onKeyPress={handleKeypress}
         />
         <TextField
           margin='dense'
@@ -58,6 +68,9 @@ const FormDialog = () => {
           label='Password'
           type='password'
           fullWidth
+          value={password}
+          onChange={handlePasswordChange}
+          onKeyPress={handleKeypress}
         />
       </DialogContent>
       <DialogActions>

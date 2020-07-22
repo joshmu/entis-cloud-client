@@ -7,30 +7,39 @@ import Footer from './components/footer/Footer'
 import WaveBorder from '../shared/WaveBorder'
 import LoginDialog from '../Dialogs/LoginDialog'
 import Banner from './components/banner/Banner'
+import { useGlobalContext } from '../contexts/globalContext'
+import { Redirect } from 'react-router'
 
 export default function Album() {
   const theme = useTheme()
+  const { auth } = useGlobalContext()
 
   return (
     <>
-      <LoginDialog />
-      <Navbar />
-      <main>
-        <Hero />
-        <Banner />
-        <WaveBorder
-          upperColor={theme.palette.background.paper}
-          lowerColor={theme.palette.background.default}
-        />
-        <Features />
-      </main>
+      {!auth ? (
+        <>
+          <LoginDialog />
+          <Navbar />
+          <main>
+            <Hero />
+            <Banner />
+            <WaveBorder
+              upperColor={theme.palette.background.paper}
+              lowerColor={theme.palette.background.default}
+            />
+            <Features />
+          </main>
 
-      <WaveBorder
-        upperColor={theme.palette.background.default}
-        lowerColor={theme.palette.background.paper}
-      />
+          <WaveBorder
+            upperColor={theme.palette.background.default}
+            lowerColor={theme.palette.background.paper}
+          />
 
-      <Footer />
+          <Footer />
+        </>
+      ) : (
+        <Redirect to='/app' />
+      )}
     </>
   )
 }
