@@ -32,6 +32,7 @@ import { createBreakpoint } from 'react-use'
 import SideMenu from './SideMenu/SideMenu'
 import Dashboard from './Dashboard/Dashboard'
 import DetailsDash from './DetailsDash/DetailsDash'
+import AdminDash from './AdminDash/AdminDash'
 import Contact from './Contact/Contact'
 import NotFound from './NotFound/NotFound'
 import Copyright from '../shared/Copyright'
@@ -223,6 +224,7 @@ const Admin = () => {
                 <Route path={`${path}`} component={Dashboard} exact />
                 <Route path={`${path}/dashboard`} component={Dashboard} />
                 <Route path={`${path}/details`} component={DetailsDash} />
+                <Route path={`${path}/admin`} component={AdminDash} />
                 <Route path={`${path}/contact`} component={Contact} />
                 <Route component={NotFound} />
               </Switch>

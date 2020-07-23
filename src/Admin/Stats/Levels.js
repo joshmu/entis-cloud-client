@@ -20,19 +20,19 @@ const formatTooltipValue = (value, name, props) => [
 export default function Levels() {
   const theme = useTheme()
   const {
-    db: { tanks },
+    db: { data: {assets}},
   } = useGlobalContext()
 
   return (
     <>
-      {tanks ? (
+      {assets ? (
         <>
           <Title>Levels</Title>
           <ResponsiveContainer>
             <BarChart
               width={500}
               height={300}
-              data={tanks}
+              data={assets}
               margin={{
                 top: 16,
                 right: 16,
@@ -41,7 +41,11 @@ export default function Levels() {
               }}
               barSize={25}
             >
-              <XAxis dataKey='name' padding={{ left: 10, right: 10 }} />
+              <XAxis
+                dataKey='asset_name'
+                hide={true}
+                padding={{ left: 10, right: 10 }}
+              />
               <YAxis />
               <Tooltip formatter={formatTooltipValue} label='test' />
               <Bar

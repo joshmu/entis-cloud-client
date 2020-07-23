@@ -17,6 +17,9 @@ function preventDefault(event) {
 }
 
 const useStyles = makeStyles(theme => ({
+  assetTitles: {
+    fontWeight: 'bold',
+  },
   seeMore: {
     marginTop: theme.spacing(3),
   },
@@ -25,7 +28,9 @@ const useStyles = makeStyles(theme => ({
 const Details = () => {
   const classes = useStyles()
   const {
-    db: { assets },
+    db: {
+      data: { assets },
+    },
   } = useGlobalContext()
   const theme = useTheme()
 
@@ -47,17 +52,19 @@ const Details = () => {
             <TableHead>
               <TableRow>
                 <TableCell>Asset ID</TableCell>
-                <TableCell>Description</TableCell>
                 <TableCell>Value</TableCell>
+                <TableCell>Description</TableCell>
                 {/* <TableCell align='right'>Sale Amount</TableCell> */}
               </TableRow>
             </TableHead>
             <TableBody>
               {assets.map((asset, idx) => (
                 <TableRow key={idx}>
-                  <TableCell>{asset.asset_name}</TableCell>
+                  <TableCell className={classes.assetTitles}>
+                    {asset.asset_name}
+                  </TableCell>
                   <TableCell
-                  align='left'
+                    align='left'
                     style={{
                       backgroundColor: createRowColorForLowHalf(asset.value),
                     }}

@@ -21,7 +21,10 @@ import { useGlobalContext } from '../../contexts/globalContext'
 
 const SideMenu = () => {
   const { url } = useRouteMatch()
-  const { setAuth } = useGlobalContext()
+  const {
+    setAuth,
+    db: { user },
+  } = useGlobalContext()
 
   const logout = e => {
     setAuth(false)
@@ -44,12 +47,16 @@ const SideMenu = () => {
           <ListItemText primary='Details' />
         </ListItem>
 
-        <ListItem button>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText primary='Customers' />
-        </ListItem>
+        {user && user.role === 'admin' ? (
+          <ListItem button component={Link} to={`${url}/admin`}>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary='Admin' />
+          </ListItem>
+        ) : (
+          ''
+        )}
 
         <ListItem button>
           <ListItemIcon>

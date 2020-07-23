@@ -16,7 +16,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function Tanks() {
   const {
-    db: { tanks },
+    db: {
+      data: { assets },
+    },
   } = useGlobalContext()
 
   const theme = useTheme()
@@ -24,13 +26,13 @@ export default function Tanks() {
 
   return (
     <>
-      {tanks ? (
-        tanks.slice(0, 4).map((tank, index) => (
+      {assets ? (
+        assets.slice(0, 8).map((asset, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <Paper className={classes.paper}>
-              <Title>{tank.name}</Title>
+              <Title>{asset.asset_name}</Title>
               <LiquidGauge
-                value={tank.value}
+                value={asset.value}
                 radius={100}
                 endColor={theme.palette.primary.main}
                 startColor={theme.palette.secondary.main}
