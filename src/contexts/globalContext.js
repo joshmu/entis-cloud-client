@@ -92,7 +92,7 @@ export const GlobalProvider = ({ children }) => {
     })
       .then(response => response.json())
       .then(data => {
-        notify('Using mock data from the server.', 'warning')
+        notify('Using partial mock data from the server.', 'warning')
         console.log({ data })
         setDb(data)
       })
@@ -100,6 +100,29 @@ export const GlobalProvider = ({ children }) => {
         // @ts-ignore
         notify('Using local mock data.', 'warning')
         setDb(mockDb.db)
+      })
+  }
+
+  const updateUserAssets = ({ userId, assetIds }) => {
+    fetch('http://localhost:3333/api/userassets/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: token,
+      },
+      body: JSON.stringify({ userId, assetIds }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log('updated', data)
+        notify(`User ID:(${userId}) assets updated.`, 'success')
+      })
+      .then(() => {
+        // update db by fetching again
+        fetchDb(token)
+      })
+      .catch(err => {
+        notify(err.message, 'error')
       })
   }
 
@@ -115,6 +138,7 @@ export const GlobalProvider = ({ children }) => {
         login,
         openLoginDialog,
         setOpenLoginDialog,
+        updateUserAssets,
       }}
     >
       {children}
