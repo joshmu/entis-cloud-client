@@ -55,7 +55,7 @@ const Hero = () => {
                   component={RouterLink}
                   to='/app'
                 >
-                  View Dashboard
+                  Login
                 </Button>
               ) : (
                 <Button
@@ -63,7 +63,7 @@ const Hero = () => {
                   color='primary'
                   onClick={handleClickPrimary}
                 >
-                  View Dashboard
+                  Login
                 </Button>
               )}
             </Grid>

@@ -11,8 +11,10 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { useGlobalContext } from '../contexts/globalContext'
 
 const FormDialog = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  })
   const {
     login,
     openLoginDialog: open,
@@ -30,11 +32,13 @@ const FormDialog = () => {
   const handleLogin = e => {
     e.preventDefault()
     setOpen(false)
-    login({ username, password })
+    login(user)
   }
 
-  const handleUsernameChange = e => setUsername(e.target.value)
-  const handlePasswordChange = e => setPassword(e.target.value)
+  const handleChange = e => {
+    setUser({ ...user, [e.target.id]: e.target.value })
+  }
+
   const handleKeypress = e => {
     if (e.charCode === 13) handleLogin(e)
   }
@@ -54,12 +58,12 @@ const FormDialog = () => {
         <TextField
           autoFocus
           margin='dense'
-          id='name'
+          id='email'
           label='Email Address'
           type='email'
           fullWidth
-          value={username}
-          onChange={handleUsernameChange}
+          value={user.email}
+          onChange={handleChange}
           onKeyPress={handleKeypress}
         />
         <TextField
@@ -68,8 +72,8 @@ const FormDialog = () => {
           label='Password'
           type='password'
           fullWidth
-          value={password}
-          onChange={handlePasswordChange}
+          value={user.password}
+          onChange={handleChange}
           onKeyPress={handleKeypress}
         />
       </DialogContent>
