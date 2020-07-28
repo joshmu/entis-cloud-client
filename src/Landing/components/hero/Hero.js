@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 const Hero = () => {
   const classes = useStyles()
-  const { auth, setOpenLoginDialog } = useGlobalContext()
+  const { auth, setOpenLoginDialog, setOpenRegisterDialog } = useGlobalContext()
 
   const title = 'Entis Cloud'
   const description =
@@ -24,6 +24,10 @@ const Hero = () => {
 
   const handleClickPrimary = e => {
     setOpenLoginDialog(true)
+  }
+
+  const handleClickRegister = e => {
+    setOpenRegisterDialog(true)
   }
 
   return (
@@ -62,6 +66,15 @@ const Hero = () => {
                   View Dashboard
                 </Button>
               )}
+            </Grid>
+            <Grid item>
+              <Button
+                variant='contained'
+                color='secondary'
+                onClick={handleClickRegister}
+              >
+                Register
+              </Button>
             </Grid>
             <Grid item>
               <Button variant='outlined' color='primary'>

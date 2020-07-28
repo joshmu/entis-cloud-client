@@ -11,6 +11,7 @@ export const globalContext = createContext(initialContext)
 export const GlobalProvider = ({ children }) => {
   const [pageTitle, setPageTitle] = useState('')
   const [openLoginDialog, setOpenLoginDialog] = useState(false)
+  const [openRegisterDialog, setOpenRegisterDialog] = useState(false)
   const [auth, setAuth] = useState(false)
   const [db, setDb] = useState({})
   const notify = useNotify()
@@ -40,6 +41,7 @@ export const GlobalProvider = ({ children }) => {
   const login = async ({ username = '', password = '' } = {}) => {
     console.log('login')
 
+    // todo: remove once we are in production
     const autoLogin = true
     if (autoLogin) {
       if (!username) username = 'test@test.com'
@@ -79,6 +81,10 @@ export const GlobalProvider = ({ children }) => {
           notify(error.message, 'error')
         })
     )
+  }
+
+  const register = userInfo => {
+    console.log('context:', {userInfo})
   }
 
   const fetchDb = token => {
@@ -136,8 +142,11 @@ export const GlobalProvider = ({ children }) => {
         auth,
         setAuth,
         login,
+        register,
         openLoginDialog,
         setOpenLoginDialog,
+        openRegisterDialog,
+        setOpenRegisterDialog,
         updateUserAssets,
       }}
     >

@@ -5,6 +5,7 @@ import Hero from './components/hero/Hero'
 import Features from './components/features/Features'
 import Footer from './components/footer/Footer'
 import WaveBorder from '../shared/WaveBorder'
+import RegisterDialog from '../Dialogs/RegisterDialog'
 import LoginDialog from '../Dialogs/LoginDialog'
 import Banner from './components/banner/Banner'
 import { useGlobalContext } from '../contexts/globalContext'
@@ -19,6 +20,7 @@ export default function Album() {
       {!auth ? (
         <>
           <LoginDialog />
+          <RegisterDialog />
           <Navbar />
           <main>
             <Hero />
