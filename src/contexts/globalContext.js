@@ -42,44 +42,37 @@ export const GlobalProvider = ({ children }) => {
     console.log('login', { userInfo })
 
     // todo: remove once we are in production
-    const autoLogin = true
+    const autoLogin = false
     if (autoLogin) {
-      if (!userInfo.username) userInfo.username = 'test@test.com'
+      if (!userInfo.email) userInfo.email = 'test@test.com'
       if (!userInfo.password) userInfo.password = 'test'
     }
 
-    return (
-      fetch('http://localhost:3333/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userInfo),
+    return fetch('http://localhost:3333/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.errors) {
+          data.errors.forEach(error => notify(error.msg, 'error'))
+          throw Error('invalid input')
+        }
+        if (data.token) {
+          console.log('new token!', data.token)
+          setToken(data.token)
+          console.log('setting auth to true')
+          setAuth(true)
+          notify('Your are logged in.', 'success')
+        }
       })
-        .then(res => res.json())
-        .then(data => {
-          if (data.errors) {
-            data.errors.forEach(error => notify(error.msg, 'error'))
-            throw Error('invalid input')
-          }
-          if (data.token) {
-            console.log('new token!', data.token)
-            setToken(data.token)
-            console.log('setting auth to true')
-            setAuth(true)
-            notify('Your are logged in.', 'success')
-          }
-          // return data.token
-        })
-        // .then(token => {
-        // console.log('fetch', { token })
-        // fetchDb(token)
-        // })
-        .catch(error => {
-          console.error(error)
-          notify(error.message, 'error')
-        })
-    )
+      .catch(error => {
+        console.error(error)
+        notify(error.message, 'error')
+      })
   }
 
   const register = userInfo => {
@@ -133,19 +126,22 @@ export const GlobalProvider = ({ children }) => {
       })
   }
 
-  const updateUserAssets = ({ userId, assetIds }) => {
+  const updateUserAssets = ({ user, assetIds }) => {
     fetch('http://localhost:3333/api/userassets/update', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         authorization: token,
       },
-      body: JSON.stringify({ userId, assetIds }),
+      body: JSON.stringify({ userId: user.id, assetIds }),
     })
       .then(res => res.json())
       .then(data => {
         console.log('updated', data)
-        notify(`User ID:(${userId}) assets updated.`, 'success')
+        notify(
+          `${user.email} updated with ${assetIds.length} assets.`,
+          'success'
+        )
       })
       .then(() => {
         // update db by fetching again

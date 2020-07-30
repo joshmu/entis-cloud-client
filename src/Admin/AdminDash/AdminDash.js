@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Container,
   Grid,
@@ -20,8 +20,8 @@ import { useGlobalContext } from '../../contexts/globalContext'
 const useStyles = makeStyles(theme => ({
   container: {
     paddingTop: theme.spacing(4),
-  paddingBottom: theme.spacing(4),
-},
+    paddingBottom: theme.spacing(4),
+  },
   paper: {
     padding: theme.spacing(2),
     display: 'flex',
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Dashboard() {
-  const [selectedUser, setSelectedUser] = useState('test1@test.com')
+  const [selectedUser, setSelectedUser] = useState(null)
   const [selectedAssets, setSelectedAssets] = useState([])
   const classes = useStyles()
   const {
@@ -50,19 +50,31 @@ export default function Dashboard() {
     setPageTitle('Admin')
   }, [setPageTitle])
 
+  // auto select the first user who is either a guest or client for the dropdown
+  useEffect(() => {
+    if (selectedUser) return
+
+    const selected = users.filter(
+      user => !!user.role.match(/[guest|client]/)
+    )[0]
+    setSelectedUser(selected)
+    // eslint-disable-next-line
+  }, [users])
+
   // on component load download a fresh version of the database
 
   const handleDropdown = e => {
-    console.log('dropdown change.', e.target.value)
-    setSelectedUser(e.target.value)
+    const dropdownValue = e.target.value
+    console.log('dropdown changed', dropdownValue)
+    const selected = users.find(user => user.email === dropdownValue)
+    setSelectedUser(selected)
   }
 
   const handleUpdate = () => {
     console.log(
       `updating data for ${selectedUser}, adding assets: ${selectedAssets}`
     )
-    const selectedUserId = users.find(user => user.username === selectedUser).id
-    updateUserAssets({ userId: selectedUserId, assetIds: selectedAssets })
+    updateUserAssets({ user: selectedUser, assetIds: selectedAssets })
   }
 
   return (
@@ -75,25 +87,29 @@ export default function Dashboard() {
                 <Typography variant='h4'>Assign User Assets</Typography>
               </Grid>
               <Grid item>
-                <Typography>
-                  Currently setting asset priveledges for user:{' '}
-                  <Typography color='primary'>
-                    <Box fontWeight={500}>{selectedUser}</Box>
+                {selectedUser && (
+                  <Typography component={'span'}>
+                    Currently setting asset priveledges for user:{' '}
+                    <Typography component={'span'} color='primary'>
+                      <Box fontWeight={500} color='primary'>
+                        {selectedUser.email}
+                      </Box>
+                    </Typography>
                   </Typography>
-                </Typography>
+                )}
               </Grid>
               <Grid container spacing={3} item alignItems='center'>
                 <Grid item>
                   {/* user dropdown */}
                   <FormControl>
-                    <InputLabel htmlFor='username'>Username</InputLabel>
+                    <InputLabel htmlFor='email'>Email</InputLabel>
                     <Select
                       native
-                      value={selectedUser}
+                      value={selectedUser?.email || ''}
                       onChange={handleDropdown}
                       inputProps={{
-                        name: 'username',
-                        id: 'username',
+                        name: 'email',
+                        id: 'email',
                       }}
                     >
                       {/* <option aria-label='None' value='' /> */}
@@ -103,8 +119,8 @@ export default function Dashboard() {
                             user.role !== 'admin' && user.role !== 'engineer'
                         )
                         .map(user => (
-                          <option key={user.username} value={user.username}>
-                            {user.username}
+                          <option key={user.email} value={user.email}>
+                            {user.email}
                           </option>
                         ))}
                     </Select>
@@ -125,10 +141,12 @@ export default function Dashboard() {
           </Paper>
         </Grid>
         <Grid item xs={12}>
-          <AdminTable
-            selectedUser={selectedUser}
-            setSelectedAssets={setSelectedAssets}
-          />
+          {selectedUser && (
+            <AdminTable
+              selectedUser={selectedUser}
+              setSelectedAssets={setSelectedAssets}
+            />
+          )}
         </Grid>
       </Grid>
     </Container>

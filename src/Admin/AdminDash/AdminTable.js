@@ -28,10 +28,9 @@ const AdminTable = ({ selectedUser, setSelectedAssets }) => {
   }, [rowsSelected])
 
   const getUserAssets = () => {
-    console.log({ users, selectedUser })
-    const selectedUserID = users.find(user => user.username === selectedUser).id
+    console.log('getUserAssets', { users, selectedUser })
     const selectedUserAssets = userAssets.filter(
-      ua => ua.user_id === selectedUserID
+      ua => ua.user_id === selectedUser.id
     )
     const selectedUserAssetIDs = selectedUserAssets.map(
       asset => asset.asset_id - 1
@@ -52,10 +51,20 @@ const AdminTable = ({ selectedUser, setSelectedAssets }) => {
   }
 
   const options = {
+    download: false,
+    print: false,
+    sortOrder: {
+      name: 'id',
+      direction: 'asc',
+    },
+    sort: true,
+    searchOpen: true,
+    fixedHeader: true,
+    responsive: 'standard',
     filter: false,
     filterType: 'checkbox',
-    rowsPerPage: 20,
-    rowsPerPageOptions: [20, 50, 100],
+    rowsPerPage: 30,
+    rowsPerPageOptions: [30, 60, 100],
     selectableRows: 'multiple',
     // @ts-ignore
     rowsSelected: rowsSelected,
@@ -64,11 +73,28 @@ const AdminTable = ({ selectedUser, setSelectedAssets }) => {
     onRowsDelete: () => false,
     // remove the bin icon
     customToolbarSelect: (selectedRows, displayData, setSelectedRows) => <></>,
+    // rowsSelected: setOuRowsSelected(),
+    customSort: (data, colIndex, order) => {
+      console.log('trigger customSort')
+
+      return data.sort((a, b) => {
+        var dir = order === 'desc' ? 1 : -1
+        var isASelected = rowsSelected.find(elem => {
+          return rowsSelected.indexOf(a.index) !== -1
+        })
+        var isBSelected = rowsSelected.find(elem => {
+          return rowsSelected.indexOf(b.index) !== -1
+        })
+        if (isASelected && !isBSelected) return 1 * dir
+        if (!isASelected && isBSelected) return -1 * dir
+        return (a.data[colIndex] > b.data[colIndex] ? -1 : 1) * dir
+      })
+    },
   }
 
   return (
     <MUIDataTable
-      title={`Assets available to ${selectedUser}`}
+      title={`Assets available to ${selectedUser.email}`}
       data={assets}
       columns={Object.keys(assets[0])}
       // @ts-ignore
