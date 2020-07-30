@@ -34,15 +34,13 @@ export const GlobalProvider = ({ children }) => {
 
   // todo: on mount checkToken expiration and remove if expired
   // todo: listen for existence of token to decide on auth
-  // todo: login should just get token as success
-  // todo: need login route
   // todo: add today data to local db
 
   const login = async userInfo => {
     console.log('login', { userInfo })
 
     // todo: remove once we are in production
-    const autoLogin = false
+    const autoLogin = true
     if (autoLogin) {
       if (!userInfo.email) userInfo.email = 'test@test.com'
       if (!userInfo.password) userInfo.password = 'test'

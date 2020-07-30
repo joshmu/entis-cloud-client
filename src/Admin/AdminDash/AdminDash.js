@@ -9,6 +9,7 @@ import {
   InputLabel,
   Select,
   Box,
+  LinearProgress,
 } from '@material-ui/core'
 
 import AdminTable from './AdminTable'
@@ -79,15 +80,20 @@ export default function Dashboard() {
 
   return (
     <Container maxWidth='lg' className={classes.container}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Grid container direction='column' spacing={1}>
-              <Grid item>
-                <Typography variant='h4'>Assign User Assets</Typography>
-              </Grid>
-              <Grid item>
-                {selectedUser && (
+      {selectedUser === null ? (
+        <LinearProgress
+          aria-describedby='dashboard data loading'
+          aria-busy={true}
+        />
+      ) : (
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <Grid container direction='column' spacing={1}>
+                <Grid item>
+                  <Typography variant='h4'>Assign User Assets</Typography>
+                </Grid>
+                <Grid item>
                   <Typography component={'span'}>
                     Currently setting asset priveledges for user:{' '}
                     <Typography component={'span'} color='primary'>
@@ -96,59 +102,57 @@ export default function Dashboard() {
                       </Box>
                     </Typography>
                   </Typography>
-                )}
-              </Grid>
-              <Grid container spacing={3} item alignItems='center'>
-                <Grid item>
-                  {/* user dropdown */}
-                  <FormControl>
-                    <InputLabel htmlFor='email'>Email</InputLabel>
-                    <Select
-                      native
-                      value={selectedUser?.email || ''}
-                      onChange={handleDropdown}
-                      inputProps={{
-                        name: 'email',
-                        id: 'email',
-                      }}
+                </Grid>
+                <Grid container spacing={3} item alignItems='center'>
+                  <Grid item>
+                    {/* user dropdown */}
+                    <FormControl>
+                      <InputLabel htmlFor='email'>Email</InputLabel>
+                      <Select
+                        native
+                        value={selectedUser?.email || ''}
+                        onChange={handleDropdown}
+                        inputProps={{
+                          name: 'email',
+                          id: 'email',
+                        }}
+                      >
+                        {/* <option aria-label='None' value='' /> */}
+                        {users
+                          .filter(
+                            user =>
+                              user.role !== 'admin' && user.role !== 'engineer'
+                          )
+                          .map(user => (
+                            <option key={user.email} value={user.email}>
+                              {user.email}
+                            </option>
+                          ))}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  {/* update button */}
+                  <Grid item>
+                    <Button
+                      variant='contained'
+                      color='primary'
+                      onClick={handleUpdate}
                     >
-                      {/* <option aria-label='None' value='' /> */}
-                      {users
-                        .filter(
-                          user =>
-                            user.role !== 'admin' && user.role !== 'engineer'
-                        )
-                        .map(user => (
-                          <option key={user.email} value={user.email}>
-                            {user.email}
-                          </option>
-                        ))}
-                    </Select>
-                  </FormControl>
-                </Grid>
-                {/* update button */}
-                <Grid item>
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={handleUpdate}
-                  >
-                    Update
-                  </Button>
+                      Update
+                    </Button>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-          </Paper>
-        </Grid>
-        <Grid item xs={12}>
-          {selectedUser && (
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
             <AdminTable
               selectedUser={selectedUser}
               setSelectedAssets={setSelectedAssets}
             />
-          )}
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </Container>
   )
 }
