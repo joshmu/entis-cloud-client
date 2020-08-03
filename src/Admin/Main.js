@@ -16,6 +16,7 @@ import {
   Divider,
   IconButton,
   Badge,
+  Button,
   Container,
   LinearProgress,
 } from '@material-ui/core'
@@ -51,6 +52,12 @@ const useStyles = makeStyles(theme => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
+  },
+  rightTopMenu: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    ...theme.mixins.toolbar,
   },
   toolbarIcon: {
     display: 'flex',
@@ -120,7 +127,7 @@ const useBreakpoint = createBreakpoint()
 const Admin = () => {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
-  const { pageTitle, auth, db } = useGlobalContext()
+  const { pageTitle, auth, setAuth, db } = useGlobalContext()
   const { path } = useRouteMatch()
 
   // detect screen size and toggle side menu
@@ -135,6 +142,10 @@ const Admin = () => {
   }
   const handleDrawerClose = () => {
     setOpen(false)
+  }
+
+  const handleLogout = () => {
+    setAuth(false)
   }
 
   return (
@@ -167,11 +178,19 @@ const Admin = () => {
               >
                 {pageTitle}
               </Typography>
-              <IconButton color='inherit'>
+              <Button
+                color='inherit'
+                component={RouterLink}
+                to='/'
+                onClick={handleLogout}
+              >
+                Logout {db?.user?.email}
+              </Button>
+              {/* <IconButton color='inherit'>
                 <Badge badgeContent={4} color='secondary'>
                   <NotificationsIcon />
                 </Badge>
-              </IconButton>
+              </IconButton> */}
             </Toolbar>
           </AppBar>
           <Drawer

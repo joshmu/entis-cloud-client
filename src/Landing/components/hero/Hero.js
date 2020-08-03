@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 const Hero = () => {
   const classes = useStyles()
-  const { auth, setOpenLoginDialog, setOpenRegisterDialog } = useGlobalContext()
+  const { setOpenLoginDialog, setOpenRegisterDialog } = useGlobalContext()
 
   const title = 'Entis Cloud'
   const description =
@@ -48,24 +48,13 @@ const Hero = () => {
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify='center'>
             <Grid item>
-              {auth ? (
-                <Button
-                  variant='contained'
-                  color='primary'
-                  component={RouterLink}
-                  to='/app'
-                >
-                  Login
-                </Button>
-              ) : (
-                <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={handleClickPrimary}
-                >
-                  Login
-                </Button>
-              )}
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={handleClickPrimary}
+              >
+                Login
+              </Button>
             </Grid>
             <Grid item>
               <Button
