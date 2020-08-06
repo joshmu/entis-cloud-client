@@ -15,7 +15,6 @@ import {
   Typography,
   Divider,
   IconButton,
-  Badge,
   Button,
   Container,
   LinearProgress,
@@ -24,7 +23,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import {
   Menu as MenuIcon,
   ChevronLeft as ChevronLeftIcon,
-  Notifications as NotificationsIcon,
 } from '@material-ui/icons'
 
 import { useGlobalContext } from '../contexts/globalContext'

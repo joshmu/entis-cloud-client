@@ -6,9 +6,9 @@
     {
       "label": "init",
       "dependsOrder": "sequence",
-      "runOptions": {
-        "runOn": "folderOpen"
-      },
+      // "runOptions": {
+      //   "runOn": "folderOpen"
+      // },
       "dependsOn": ["client-dev"]
     },
     {
