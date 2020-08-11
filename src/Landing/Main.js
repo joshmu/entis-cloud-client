@@ -25,16 +25,11 @@ export default function Album() {
           <main>
             <Hero />
             <Banner />
-            <WaveBorder
-              upperColor={theme.palette.background.paper}
-              lowerColor={theme.palette.background.default}
-            />
+            <WaveBorder />
             <Features />
           </main>
-          <WaveBorder
-            upperColor={theme.palette.background.default}
-            lowerColor={theme.palette.background.paper}
-          />
+          {/* todo: add property for top bottom color */}
+          <WaveBorder />
           <Footer />
         </>
       ) : (
