@@ -1,32 +1,16 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
 import Copyright from '../../../shared/Copyright'
 
-const useStyles = makeStyles(theme => ({
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-}))
-
 const Footer = () => {
-  const classes = useStyles()
-
   return (
-    <footer className={classes.footer}>
-      <Typography variant='h6' align='center' gutterBottom>
-        Footer
-      </Typography>
-      <Typography
-        variant='subtitle1'
-        align='center'
-        color='textSecondary'
-        component='p'
-      >
+    <footer className='flex flex-col justify-center items-center p-12 bg-white'>
+      <h2 className='text-xl capitalize'>Footer</h2>
+      <p className='text-gray-700 text-md tracking-wide mt-2'>
         Something here to give the footer a purpose!
-      </Typography>
-      <Copyright />
+      </p>
+      <div className='mt-2'>
+        <Copyright />
+      </div>
     </footer>
   )
 }
