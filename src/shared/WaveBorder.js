@@ -1,8 +1,9 @@
 import React from 'react'
 
-function WaveBorder(props) {
+function WaveBorder({ waveColor, bgColor }) {
   return (
-    <div className='text-gray-100 bg-white'>
+    <div className={`${bgColor} ${waveColor}`}>
+      <p>waveborder</p>
       <svg
         className='fill-current h-20 w-full'
         xmlns='http://www.w3.org/2000/svg'
@@ -17,7 +18,7 @@ function WaveBorder(props) {
             d='M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z'
           />
         </defs>
-        <g className='parallax'>
+        <g className='waveAnimation'>
           <use href='#waveborder' x='48' y='0' fill='' />
         </g>
       </svg>
