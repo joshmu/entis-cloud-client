@@ -36,8 +36,7 @@ const Features = () => {
 
   return (
     <>
-      <Container className={classes.cardGrid} maxWidth='md'>
-        {/* End hero unit */}
+      {/* <Container className={classes.cardGrid} maxWidth='md'>
         <Grid container spacing={4}>
           {cards.map(card => (
             <Grid item key={card} xs={12} sm={6} md={4}>
@@ -68,8 +67,8 @@ const Features = () => {
             </Grid>
           ))}
         </Grid>
-      </Container>
-      <div className='w-full md:px-8 lg:px-64'>
+      </Container> */}
+      <div className='w-full md:px-8 lg:px-16 xl:px-64 pt-8 pb-16'>
         <div className='block mx-4 bg-gray-100 sm:flex sm:flex-col sm:justify-center sm:items-center md:flex-row md:justify-between md:space-x-8'>
           {cards.map(card => (
             <div
