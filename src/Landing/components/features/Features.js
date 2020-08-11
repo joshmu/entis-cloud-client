@@ -68,20 +68,14 @@ const Features = () => {
           ))}
         </Grid>
       </Container> */}
-      <div className='w-full md:px-8 lg:px-16 xl:px-64 pt-8 pb-16'>
-        <div className='block mx-4 bg-gray-100 sm:flex sm:flex-col sm:justify-center sm:items-center md:flex-row md:justify-between md:space-x-8'>
-          {cards.map(card => (
-            <div
-              key={card}
-              className='mt-8 sm:mt-16 flex-col w-full sm:w-2/3 md:flex-1 bg-white shadow-md rounded-md overflow-hidden'
-            >
-              <div className='h-40 overflow-hidden'>
-                <img
-                  src='https://source.unsplash.com/random'
-                  alt='placeholder'
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
+      <div className='flex justify-center items-center flex-wrap'>
+        {cards.map(card => (
+          <div key={card} className='w-full sm:w-1/2 md:w-64 p-4'>
+            <div className='overflow-hidden shadow-md rounded border'>
+              <img
+                src='https://source.unsplash.com/_Dogn_h7Qek'
+                alt='placeholder'
+              />
               <div className='p-4'>
                 <h2 className='text-2xl'>Heading</h2>
                 <p className='mt-2 leading-relaxed text-md'>
@@ -98,8 +92,8 @@ const Features = () => {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </>
   )
