@@ -1,5 +1,5 @@
 import React from 'react'
-import { CloudQueue as CloudQueueIcon } from '@material-ui/icons'
+import { AiOutlineCloudServer as LogoSVG } from 'react-icons/ai'
 import { useGlobalContext } from '../../../contexts/globalContext'
 
 const Navbar = () => {
@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <div className='font-bold bg-indigo-700 flex justify-between items-center text-white px-4 md:px-6 shadow-md'>
       <div id='logo' className='text-xl capitalize flex items-center py-4'>
-        <CloudQueueIcon className='fill-current' />
+        <LogoSVG className='fill-current text-4xl' />
         <h1 className='ml-2'>{title}</h1>
       </div>
       <div id='menu'>
