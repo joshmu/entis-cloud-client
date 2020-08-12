@@ -1,22 +1,14 @@
 import React from 'react'
 import { Link, useRouteMatch } from 'react-router-dom'
 import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListSubheader,
-  ListItemText,
-  Divider,
-} from '@material-ui/core'
-import {
-  Dashboard as DashboardIcon,
-  People as PeopleIcon,
-  BarChart as BarChartIcon,
-  Layers as LayersIcon,
-  Info as InfoIcon,
-  Assignment as AssignmentIcon,
-  Person as PersonIcon,
-} from '@material-ui/icons'
+  MdDashboard as DashboardIcon,
+  MdPeople as PeopleIcon,
+  MdLayers as LayersIcon,
+  MdInfo as InfoIcon,
+  MdPerson as PersonIcon,
+} from 'react-icons/md'
+import { BsBarChartFill as BarChartIcon } from 'react-icons/bs'
+
 import { useGlobalContext } from '../../contexts/globalContext'
 
 const SideMenu = () => {
@@ -31,78 +23,80 @@ const SideMenu = () => {
   }
 
   return (
-    <>
-      <List>
-        <ListItem button component={Link} to={`${url}/dashboard`}>
-          <ListItemIcon>
+    <ul className='my-2'>
+      {/* dashboard */}
+      <li className='p-1 pl-4 text-gray-600 hover:bg-gray-100 transition duration-300 ease-in-out'>
+        <Link
+          to={`${url}/dashboard`}
+          className='flex items-center justify-start'
+        >
+          <div className='p-2 fill-current text-xl'>
             <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary='Dashboard' />
-        </ListItem>
+          </div>
+          <p className='ml-5 text-gray-700 text-md'>Dashboard</p>
+        </Link>
+      </li>
 
-        <ListItem button component={Link} to={`${url}/details`}>
-          <ListItemIcon>
+      {/* details */}
+      <li className='p-1 pl-4 text-gray-600 hover:bg-gray-100 transition duration-300 ease-in-out'>
+        <Link to={`${url}/details`} className='flex items-center justify-start'>
+          <div className='p-2 fill-current text-xl'>
             <BarChartIcon />
-          </ListItemIcon>
-          <ListItemText primary='Details' />
-        </ListItem>
+          </div>
+          <p className='ml-5 text-gray-700 text-md'>Details</p>
+        </Link>
+      </li>
 
-        {user && user.role === 'admin' ? (
-          <ListItem button component={Link} to={`${url}/admin`}>
-            <ListItemIcon>
+      {/* admin */}
+      {user && user.role === 'admin' ? (
+        <li className='p-1 pl-4 text-gray-600 hover:bg-gray-100 transition duration-300 ease-in-out'>
+          <Link to={`${url}/admin`} className='flex items-center justify-start'>
+            <div className='p-2 fill-current text-xl'>
               <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary='Admin' />
-          </ListItem>
-        ) : (
-          ''
-        )}
+            </div>
+            <p className='ml-5 text-gray-700 text-md'>Admin</p>
+          </Link>
+        </li>
+      ) : (
+        ''
+      )}
 
-        <ListItem button>
-          <ListItemIcon>
+      {/* integrations */}
+      <li className='p-1 pl-4 text-gray-600 hover:bg-gray-100 transition duration-300 ease-in-out'>
+        <Link
+          to={`${url}/integrations`}
+          className='flex items-center justify-start'
+        >
+          <div className='p-2 fill-current text-xl'>
             <LayersIcon />
-          </ListItemIcon>
-          <ListItemText primary='Integrations' />
-        </ListItem>
+          </div>
+          <p className='ml-5 text-gray-700 text-md'>Integrations</p>
+        </Link>
+      </li>
 
-        <ListItem button component={Link} to={`${url}/contact`}>
-          <ListItemIcon>
+      {/* contact */}
+      <li className='p-1 pl-4 text-gray-600 hover:bg-gray-100 transition duration-300 ease-in-out'>
+        <Link to={`${url}/contact`} className='flex items-center justify-start'>
+          <div className='p-2 fill-current text-xl'>
             <InfoIcon />
-          </ListItemIcon>
-          <ListItemText primary='Contact' />
-        </ListItem>
+          </div>
+          <p className='ml-5 text-gray-700 text-md'>Contact</p>
+        </Link>
+      </li>
 
-        <ListItem button component={Link} to='/' onClick={logout}>
-          <ListItemIcon>
+      {/* logout */}
+      <li
+        onClick={logout}
+        className='p-1 pl-4 text-gray-600 hover:bg-gray-100 transition duration-300 ease-in-out'
+      >
+        <Link to='/' className='flex items-center justify-start'>
+          <div className='p-2 fill-current text-xl'>
             <PersonIcon />
-          </ListItemIcon>
-          <ListItemText primary='Logout' />
-        </ListItem>
-      </List>
-
-      <Divider />
-      <List>
-        <ListSubheader inset>Reports</ListSubheader>
-        <ListItem button>
-          <ListItemIcon>
-            <AssignmentIcon />
-          </ListItemIcon>
-          <ListItemText primary='Current month' />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <AssignmentIcon />
-          </ListItemIcon>
-          <ListItemText primary='Last quarter' />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <AssignmentIcon />
-          </ListItemIcon>
-          <ListItemText primary='Year-end' />
-        </ListItem>
-      </List>
-    </>
+          </div>
+          <p className='ml-5 text-gray-700 text-md'>Logout</p>
+        </Link>
+      </li>
+    </ul>
   )
 }
 

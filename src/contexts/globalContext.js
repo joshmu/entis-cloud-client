@@ -36,13 +36,13 @@ export const GlobalProvider = ({ children }) => {
   // todo: listen for existence of token to decide on auth
   // todo: add today data to local db
 
-  const login = async userInfo => {
+  const login = async (userInfo = {}) => {
     console.log('login', { userInfo })
 
     // todo: remove once we are in production
     const autoLogin = true
     if (autoLogin) {
-      if (!userInfo.email) userInfo.email = 'test@test.com'
+      if (!userInfo.email) userInfo.email = 'admin@test.com'
       if (!userInfo.password) userInfo.password = 'test'
     }
 

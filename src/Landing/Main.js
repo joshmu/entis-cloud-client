@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from './components/navbar/Navbar'
 import Hero from './components/hero/Hero'
 import Features from './components/features/Features'
@@ -11,7 +11,11 @@ import { useGlobalContext } from '../contexts/globalContext'
 import { Redirect } from 'react-router'
 
 export default function Album() {
-  const { auth } = useGlobalContext()
+  const { auth, login } = useGlobalContext()
+
+  useEffect(() => {
+    login()
+  }, [])
 
   return (
     <>
