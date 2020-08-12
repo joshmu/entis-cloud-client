@@ -81,27 +81,27 @@ const LoginModal = () => {
           </p>
           <div className='mt-8'>
             <div className='leading-loose border-b border-gray-500 text-md'>
-              <label className='hidden' htmlFor='email'>
+              <label className='hidden' htmlFor='login_email'>
                 Email
               </label>
               <input
                 value={user.email}
                 onChange={handleChange}
                 onKeyPress={handleKeypress}
-                id='email'
+                id='login_email'
                 type='email'
                 placeholder='Email Address'
               />
             </div>
             <div className='mt-4 leading-loose border-b border-gray-500 text-md'>
-              <label className='hidden' htmlFor='password'>
+              <label className='hidden' htmlFor='login_password'>
                 Password
               </label>
               <input
                 value={user.password}
                 onChange={handleChange}
                 onKeyPress={handleKeypress}
-                id='password'
+                id='login_password'
                 type='password'
                 placeholder='Password'
               />

@@ -10,11 +10,3 @@
 .waveAnimation {
   animation: wavesForever 5s cubic-bezier(0.62, 0.5, 0.38, 0.5) infinite;
 }
-
-/* .modal {
-  transition: opacity 0.25s ease;
-}
-.modal-active {
-  overflow-x: hidden;
-  overflow-y: visible !important;
-} */
