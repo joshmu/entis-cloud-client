@@ -28,7 +28,7 @@ const Hero = () => {
           <li>
             <button
               onClick={handleClickPrimary}
-              className='px-3 hover:shadow-md py-2 mx-2 font-bold text-white uppercase hover:bg-indigo-900 bg-indigo-800 rounded shadow-sm focus:outline-none'
+              className='px-3 hover:shadow-md py-2 mx-2 font-bold text-white uppercase hover:bg-indigo-900 bg-indigo-800 rounded shadow-sm focus:outline-none transition duration-150 ease-in-out'
             >
               login
             </button>
@@ -36,13 +36,13 @@ const Hero = () => {
           <li>
             <button
               onClick={handleClickRegister}
-              className='px-3 hover:shadow-md py-2 mx-2 font-bold text-white uppercase hover:bg-red-800 bg-red-700 rounded shadow-sm focus:outline-none'
+              className='px-3 hover:shadow-md py-2 mx-2 font-bold text-white uppercase hover:bg-red-800 bg-red-700 rounded shadow-sm focus:outline-none transition duration-150 ease-in-out'
             >
               register
             </button>
           </li>
           <li>
-            <button className='px-3 hover:shadow-md py-2 mx-2 font-bold text-blue-700 hover:bg-blue-100 uppercase border border-blue-700 rounded shadow-sm focus:outline-none'>
+            <button className='px-3 hover:shadow-md py-2 mx-2 font-bold text-blue-700 hover:bg-blue-100 uppercase border border-blue-700 rounded shadow-sm focus:outline-none transition duration-150 ease-in-out'>
               contact us
             </button>
           </li>

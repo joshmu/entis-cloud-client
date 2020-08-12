@@ -8,7 +8,7 @@ const Footer = () => {
       <p className='text-gray-700 text-md tracking-wide mt-2'>
         Something here to give the footer a purpose!
       </p>
-      <div className='mt-2'>
+      <div className='mt-1'>
         <Copyright />
       </div>
     </footer>

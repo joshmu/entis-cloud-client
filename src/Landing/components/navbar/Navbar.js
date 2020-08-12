@@ -24,7 +24,7 @@ const Navbar = () => {
         <ul className='flex'>
           <li>
             <button
-              className='hover:text-gray-100 focus:outline-none uppercase font-semibold cursor-pointer px-2 py-1'
+              className='hover:text-gray-100 focus:outline-none uppercase font-semibold cursor-pointer px-2 py-1 transition duration-150 ease-in-out'
               onClick={handleLogin}
             >
               Login
@@ -32,7 +32,7 @@ const Navbar = () => {
           </li>
           <li>
             <button
-              className='hover:text-gray-100 focus:outline-none uppercase font-semibold cursor-pointer px-2 py-1'
+              className='hover:text-gray-100 focus:outline-none uppercase font-semibold cursor-pointer px-2 py-1 transition duration-150 ease-in-out'
               onClick={handleRegister}
             >
               Register
