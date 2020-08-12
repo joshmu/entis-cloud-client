@@ -4,8 +4,8 @@ import Hero from './components/hero/Hero'
 import Features from './components/features/Features'
 import Footer from './components/footer/Footer'
 import WaveBorder from '../shared/WaveBorder'
-import RegisterDialog from '../Dialogs/RegisterDialog'
-import LoginDialog from '../Dialogs/LoginDialog'
+import RegisterModal from '../Modals/RegisterModal'
+import LoginModal from '../Modals/LoginModal'
 import Banner from './components/banner/Banner'
 import { useGlobalContext } from '../contexts/globalContext'
 import { Redirect } from 'react-router'
@@ -17,8 +17,8 @@ export default function Album() {
     <>
       {!auth ? (
         <>
-          <LoginDialog />
-          <RegisterDialog />
+          <LoginModal />
+          <RegisterModal />
           <Navbar />
           <main>
             <Hero />

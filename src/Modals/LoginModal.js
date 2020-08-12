@@ -1,16 +1,9 @@
 import React, { useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
-import DialogTitle from '@material-ui/core/DialogTitle'
 
 import { useGlobalContext } from '../contexts/globalContext'
 
-const FormDialog = () => {
+const LoginModal = () => {
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -20,18 +13,6 @@ const FormDialog = () => {
     openLoginDialog: open,
     setOpenLoginDialog: setOpen,
   } = useGlobalContext()
-
-  // const handleClickOpen = () => {
-  //   setOpen(true)
-  // }
-
-  function toggleModal() {
-    const body = document.querySelector('body')
-    const modal = document.querySelector('.modal')
-    modal.classList.toggle('opacity-0')
-    modal.classList.toggle('pointer-events-none')
-    body.classList.toggle('modal-active')
-  }
 
   const handleClose = () => {
     setOpen(false)
@@ -54,12 +35,12 @@ const FormDialog = () => {
   return (
     <div
       className={`${
-        !open ? 'modal-active' : 'opacity-0 pointer-events-none'
+        open ? 'modal-active' : 'opacity-0 pointer-events-none'
       } modal fixed w-full h-full top-0 left-0 flex items-center justify-center  transition-opacity duration-150 ease-linear`}
     >
       <div className='absolute w-full h-full bg-gray-900 opacity-50 modal-overlay'></div>
 
-      <div className='p-2 z-50 w-11/12 mx-auto overflow-y-auto bg-white rounded shadow-lg modal-container md:max-w-md'>
+      <div className='z-50 w-11/12 p-2 mx-auto overflow-y-auto bg-white rounded shadow-lg modal-container md:max-w-md'>
         <div
           className='absolute top-0 right-0 z-50 flex flex-col items-center mt-4 mr-4 text-sm text-white cursor-pointer'
           onClick={handleClose}
@@ -94,22 +75,36 @@ const FormDialog = () => {
           </div>
 
           {/* <!--Body--> */}
-          <p className='text-md mt-2 text-gray-600 tracking-wide'>
+          <p className='mt-2 tracking-wide text-gray-600 text-md'>
             Currently for demonstration purposes. No login credentials are
             required to continue, simply click login.
           </p>
           <div className='mt-8'>
-            <div className='border-b text-md leading-loose border-gray-500'>
+            <div className='leading-loose border-b border-gray-500 text-md'>
               <label className='hidden' htmlFor='email'>
                 Email
               </label>
-              <input id='email' type='email' placeholder='Email Address' />
+              <input
+                value={user.email}
+                onChange={handleChange}
+                onKeyPress={handleKeypress}
+                id='email'
+                type='email'
+                placeholder='Email Address'
+              />
             </div>
-            <div className='mt-4 border-b text-md leading-loose border-gray-500'>
+            <div className='mt-4 leading-loose border-b border-gray-500 text-md'>
               <label className='hidden' htmlFor='password'>
                 Password
               </label>
-              <input id='password' type='password' placeholder='Password' />
+              <input
+                value={user.password}
+                onChange={handleChange}
+                onKeyPress={handleKeypress}
+                id='password'
+                type='password'
+                placeholder='Password'
+              />
             </div>
           </div>
 
@@ -117,63 +112,23 @@ const FormDialog = () => {
           <div className='flex justify-end pt-2 mt-8'>
             <button
               onClick={handleClose}
-              className=' px-2 uppercase font-md text-red-700 rounded hover:bg-red-100 transition duration-300 ease-in-out'
+              className='px-2 text-red-700 uppercase transition duration-300 ease-in-out rounded focus:outline-none font-md hover:bg-red-100'
             >
               cancel
             </button>
-            <button
-              onClick={handleLogin}
-              className=' p-2 ml-4 uppercase text-indigo-700 bg-transparent rounded hover:bg-indigo-100 transition duration-300 ease-in-out'
-            >
-              Login
-            </button>
+            <RouterLink to='/app'>
+              <button
+                onClick={handleLogin}
+                className='p-2 ml-4 text-indigo-700 uppercase transition duration-300 ease-in-out bg-transparent rounded focus:outline-none hover:bg-indigo-100'
+              >
+                Login
+              </button>
+            </RouterLink>
           </div>
-
-          <DialogTitle id='form-dialog-title'>Login</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Currently for demonstration purposes. No login credentials are
-              required to continue, simply click login.
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin='dense'
-              id='email'
-              label='Email Address'
-              type='email'
-              fullWidth
-              value={user.email}
-              onChange={handleChange}
-              onKeyPress={handleKeypress}
-            />
-            <TextField
-              margin='dense'
-              id='password'
-              label='Password'
-              type='password'
-              fullWidth
-              value={user.password}
-              onChange={handleChange}
-              onKeyPress={handleKeypress}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color='secondary'>
-              Cancel
-            </Button>
-            <Button
-              onClick={handleLogin}
-              color='primary'
-              component={RouterLink}
-              to='/app'
-            >
-              Login
-            </Button>
-          </DialogActions>
         </div>
       </div>
     </div>
   )
 }
 
-export default FormDialog
+export default LoginModal

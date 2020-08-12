@@ -10,7 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 
 import { useGlobalContext } from '../contexts/globalContext'
 
-const FormDialog = () => {
+const RegisterModal = () => {
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -139,4 +139,4 @@ const FormDialog = () => {
   )
 }
 
-export default FormDialog
+export default RegisterModal
