@@ -40,7 +40,7 @@ export const GlobalProvider = ({ children }) => {
     console.log('login', { userInfo })
 
     // todo: remove once we are in production
-    const autoLogin = true
+    const autoLogin = true  
     if (autoLogin) {
       if (!userInfo.email) userInfo.email = 'admin@test.com'
       if (!userInfo.password) userInfo.password = 'test'

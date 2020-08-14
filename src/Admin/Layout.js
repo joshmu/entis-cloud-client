@@ -56,7 +56,7 @@ export default function Layout({ children }) {
           className='flex items-center justify-between h-16 text-white bg-indigo-700'
         >
           {/* left */}
-          <h2 className='ml-4 text-white text-2xl'>{pageTitle}</h2>
+          <h2 className='ml-4 text-white text-xl'>{pageTitle}</h2>
 
           {/* right */}
           <RouterLink to='/'>

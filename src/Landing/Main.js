@@ -14,7 +14,8 @@ export default function Album() {
   const { auth, login } = useGlobalContext()
 
   useEffect(() => {
-    login()
+    // todo: remove when we want to see landing and are in production
+    // login()
     // eslint-disable-next-line
   }, [])
 

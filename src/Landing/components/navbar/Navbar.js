@@ -15,7 +15,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className='font-bold bg-indigo-700 flex justify-between items-center text-white px-4 md:px-6 shadow-md'>
+    <div className='bg-indigo-700 flex justify-between items-center text-white px-4 md:px-6 shadow-md'>
       <div id='logo' className='text-xl capitalize flex items-center py-4'>
         <LogoSVG className='fill-current text-4xl' />
         <h1 className='ml-2'>{title}</h1>
