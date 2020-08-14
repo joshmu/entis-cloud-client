@@ -15,6 +15,7 @@ export default function Album() {
 
   useEffect(() => {
     login()
+    // eslint-disable-next-line
   }, [])
 
   return (
