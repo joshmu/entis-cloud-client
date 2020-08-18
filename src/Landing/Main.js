@@ -15,7 +15,7 @@ export default function Album() {
 
   useEffect(() => {
     // todo: remove when we want to see landing and are in production
-    // login()
+    login()
     // eslint-disable-next-line
   }, [])
 

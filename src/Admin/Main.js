@@ -21,8 +21,6 @@ const Admin = () => {
       {auth ? (
         <Layout>
           <main>
-            <div />
-
             {/* Main Content */}
             {Object.keys(db).length === 0 ? (
               <LinearProgress
@@ -40,11 +38,7 @@ const Admin = () => {
               </Switch>
             )}
 
-            <Container maxWidth='lg'>
-              <Box pt={4}>
-                <Copyright />
-              </Box>
-            </Container>
+            <Copyright />
           </main>
         </Layout>
       ) : (
