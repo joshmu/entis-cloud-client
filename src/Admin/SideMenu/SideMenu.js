@@ -23,7 +23,7 @@ const SideMenu = () => {
   }
 
   return (
-    <ul className='my-2'>
+    <ul>
       {/* dashboard */}
       <li className='p-1 pl-4 text-gray-600 hover:bg-gray-100 transition duration-300 ease-in-out'>
         <Link
