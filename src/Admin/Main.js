@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom'
-import { Box, Container, LinearProgress } from '@material-ui/core'
+import LinearProgress from '@material-ui/core/LinearProgress/LinearProgress'
 
 import { useGlobalContext } from '../contexts/globalContext'
 

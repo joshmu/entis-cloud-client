@@ -20,7 +20,9 @@ const formatTooltipValue = (value, name, props) => [
 export default function Levels() {
   const theme = useTheme()
   const {
-    db: { data: {assets}},
+    db: {
+      data: { assets },
+    },
   } = useGlobalContext()
 
   return (
